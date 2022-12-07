@@ -1,0 +1,7 @@
+{
+  "name": "goodbooks",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
