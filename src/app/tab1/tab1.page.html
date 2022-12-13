@@ -5,43 +5,42 @@
   <div class="cards">
     <div class="card">
         <div class="profile">
-          <div class="avatar"></div>
+          <div class="avatar1"></div>
           <p class="text-bold">Simone de Beauvoir</p>
         </div>
         <div class="card-header">
             <div class="card-img1"></div>
         </div>
         <div class="card-body">
-            <p class="text-bold">Simone De Beauvoir</p>
-            <p>Mon post - texte de description</p>
+            <p class="text-description">Mon dernier coup de coeur !</p>
             <div class="reactions">
               <div class="likes">
-                <p (click)="addLike1()"><i class="fa-solid fa-heart" [ngClass]="{violet: like1 === 1}"></i></p>
+                <p (click)="addLike1()"><i class="fa-solid fa-heart" [ngClass]="{violetHeart: like1 === 1}"></i></p>
                 <p class="text-small">{{like1}}</p>
               </div>
-
+              <i class="fa-solid fa-message"></i>
               <a routerLink=[]>Voir les commentaires</a>
             </div>
         </div>
     </div>
     <div class="card">
+        <div class="profile">
+          <div class="avatar2"></div>
+          <p class="text-bold">Jean Valjean</p>
+        </div>
         <div class="card-header">
             <div class="card-img2"></div>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Mon post - texte de description</h5>
-            <p>Jean Valjean</p>
-            <p (click)="addLike2()"><i class="fa-solid fa-heart" [ngClass]="{violet: like2 === 1}"></i></p>
+            <p class="text-description">Le dernier Victor Hugo : Je vous le recommande.</p>
+            <div class="reactions">
+              <div class="likes">
+                <p (click)="addLike2()"><i class="fa-solid fa-heart" [ngClass]="{violetHeart: like2 === 1}"></i></p>
+                <p class="text-small">{{like2}}</p>
+              </div>
+              <a routerLink=[]>Voir les commentaires</a>
+            </div>
         </div>
     </div>
 </div>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col>1</ion-col>
-      <ion-col>2</ion-col>
-      <ion-col>3</ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
 

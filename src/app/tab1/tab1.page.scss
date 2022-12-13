@@ -61,7 +61,7 @@ body {
     width: 100%;
 }
 
-.violet {
+.violetHeart {
     color: blueviolet;
     opacity: 100% !important;
 }
@@ -73,12 +73,16 @@ body {
     margin-right: 5px;
 }
 
+.fa-message {
+    font-size: 1.6rem;
+}
+
 .profile {
     display: flex;
     align-items: center;
 }
 
-.avatar {
+.avatar1 {
     background-color: rgb(22, 199, 248);
     width: 30px;
     height: 30px;
@@ -86,15 +90,30 @@ body {
     margin-right: 10px;
     background-size: cover;
     background-position: center;
-    background-image: url("https://resize.elle.fr/article/var/plain_site/storage/images/loisirs/cinema/news/avatar-2-une-premiere-bande-annonce-en-mai-4010741/96462268-1-fre-FR/Avatar-2-une-premiere-bande-annonce-en-mai.jpg");
+    background-image: url("https://www.revue-ballast.fr/wp-content/uploads/2017/11/fbsdb.jpg");
+}
+
+.avatar2 {
+    background-color: rgb(22, 199, 248);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSBoUFHEYefJOcVH6Fa_RwKCKwd6K9vyWB7hy-XXLWsYwdaFqBA");
 }
 
 .text-bold {
     font-weight: 700;
 }
 
-.tex-small {
+.text-small {
     font-size: 0.8rem;
+}
+
+.text-description {
+    font-size: 0.9rem;
 }
 
 .reactions {
