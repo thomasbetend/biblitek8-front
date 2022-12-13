@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: roboto, sans-serif;
+    text-align: center;
+}
+
+.cards {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    border-radius: 10px;
+    width: 80%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(59, 61, 62, 0.2) 0px 12px 24px;
+}
+
+.card-img1 {
+    border-radius: 10px 10px 0 0;
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://www.mercator-ocean.eu/wp-content/uploads/2019/11/Mock-Up_BlueBookCopernicus_2.jpg");
+    height: 300px;
+    width: 100%;
+}
+
+.card-img2 {
+    border-radius: 10px 10px 0 0;
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://www.collinsdictionary.com/images/full/book_181404689_1000.jpg");
+    height: 300px;
+    width: 100%;
+}
+
+.card-body {
+    padding: 10px 20px;
+}
+
+.card-body h2 {
+    margin: 10px 0px;
+}
+
+.card-button {
+    border: none;
+    background-color: none;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+}
+
+.violet {
+    color: blueviolet;
+    opacity: 100% !important;
+}
+
+.fa-solid {
+    font-size: 1.8rem;
+    cursor: pointer;
+    opacity: 13%;
+    margin-right: 5px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    background-color: rgb(22, 199, 248);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://resize.elle.fr/article/var/plain_site/storage/images/loisirs/cinema/news/avatar-2-une-premiere-bande-annonce-en-mai-4010741/96462268-1-fre-FR/Avatar-2-une-premiere-bande-annonce-en-mai.jpg");
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.tex-small {
+    font-size: 0.8rem;
+}
+
+.reactions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reactions a {
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+}
