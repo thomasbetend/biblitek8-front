@@ -1,33 +1,39 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="false">
-
   <div class="cards">
-    <div class="card">
+    <div class="cardTotal">
+      <div class="user">
         <div class="profile">
           <div class="avatar1"></div>
-          <p class="text-bold">Simone de Beauvoir</p>
+          <p class="text-bold">Simone De Beauvoir</p>
         </div>
-        <div class="card-header">
-            <div class="card-img1"></div>
-        </div>
-        <div class="card-body">
-            <p class="text-description">Mon dernier coup de coeur !</p>
-            <div class="reactions">
-              <div class="likes">
-                <p (click)="addLike1()"><i class="fa-solid fa-heart" [ngClass]="{violetHeart: like1 === 1}"></i></p>
-                <p class="text-small">{{like1}}</p>
+      </div>
+      <div class="card">
+          <div class="card-header">
+              <div class="card-img1"></div>
+          </div>
+          <div class="card-body">
+              <p class="text-description">Le dernier Victor Hugo.</p>
+              <div class="reactions">
+                <div class="likes">
+                  <p (click)="addLike1()"><i class="fa-solid fa-heart" [ngClass]="{violetHeart: like1 === 1}"></i></p>
+                  <p class="text-small">{{like1}}</p>
+                </div>
+                <i class="fa-solid fa-message"></i>
+                <a routerLink=[]>Voir les commentaires</a>
               </div>
-              <i class="fa-solid fa-message"></i>
-              <a routerLink=[]>Voir les commentaires</a>
-            </div>
-        </div>
+          </div>
+      </div>  
     </div>
-    <div class="card">
+    <div class="cardTotal">
+      <div class="user">
         <div class="profile">
           <div class="avatar2"></div>
           <p class="text-bold">Jean Valjean</p>
         </div>
+      </div>
+      <div class="card">
         <div class="card-header">
             <div class="card-img2"></div>
         </div>
@@ -38,9 +44,36 @@
                 <p (click)="addLike2()"><i class="fa-solid fa-heart" [ngClass]="{violetHeart: like2 === 1}"></i></p>
                 <p class="text-small">{{like2}}</p>
               </div>
+              <i class="fa-solid fa-message"></i>
               <a routerLink=[]>Voir les commentaires</a>
             </div>
         </div>
+      </div>
     </div>
-</div>
+    <div class="cardTotal" *ngFor = "let myPost of data">
+      <div class="user">
+        <div class="profile">
+          <div class="avatar2"></div>
+          <p class="text-bold">{{myPost.id}}</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+            <div class="card-img2" [ngStyle]="{'background-image' : 'url(' + imageUrl + myPost.poster + ')'}"></div>
+        </div>
+        <div class="card-body">
+            <p class="text-description">{{myPost.description}}</p>
+            <div class="reactions">
+              <div class="likes">
+                <p (click)="addLike2()"><i class="fa-solid fa-heart" [ngClass]="{violetHeart: like2 === 1}"></i></p>
+                <p class="text-small">{{like2}}</p>
+              </div>
+              <i class="fa-solid fa-message"></i>
+              <a routerLink=[]>Voir les commentaires</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
 

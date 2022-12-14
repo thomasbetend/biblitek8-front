@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,10 +8,24 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
+  data: any;
   like1 = 0;
   like2 = 0;
-  
-  constructor() {}
+  imageUrl?: string;
+
+
+  urlAvatar1 = "https://www.revue-ballast.fr/wp-content/uploads/2017/11/fbsdb.jpg";
+  urlAvatar2 = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSBoUFHEYefJOcVH6Fa_RwKCKwd6K9vyWB7hy-XXLWsYwdaFqBA";
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.refreshList();
+    this.imageUrl = "../../assets/images/";
+  }
+
+
+
 
   addLike1() {
     if (this.like1 === 0) {
@@ -27,5 +42,15 @@ export class Tab1Page {
       this.like2--;
     }
   }
+
+  refreshList() {
+    this.apiService.getPostsList().subscribe(data => {
+      console.log(data);
+      this.data = data;
+  });
+  }
+
+  
+
 
 }
