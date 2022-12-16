@@ -1,0 +1,25 @@
+<div class="cardTotal">
+  <div class="user">
+    <div class="profile">
+      <div class="avatar1"></div>
+      <p class="text-bold">{{ post.id }}</p>
+    </div>
+  </div>
+  <div class="card">
+      <div class="card-header">
+          <div class="card-img1"></div>
+      </div>
+      <div class="card-body">
+          <p class="text-description">{{ post.description }}</p>
+          <div class="reactions">
+            <div class="likes">
+              <p (click)="addLike()"><i class="fa-solid fa-heart" [ngClass]="{violetHeart: like === 1}"></i></p>
+              <p class="text-small">{{like}}</p>
+            </div>
+            <i class="fa-solid fa-message"></i>
+            <a routerLink=[]>Voir les commentaires</a>
+          </div>
+      </div>
+  </div>  
+</div>
+
