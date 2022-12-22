@@ -1,5 +1,10 @@
 export interface Post {
-    poster: string,
+    id: number,
+    image: string,
     description: string,
-    id: string,
+    user: {
+        id: number,
+        pseudo: string,
+        avatar: string,
+    }
 }

@@ -1,0 +1,133 @@
+.cards {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardTotal {
+    width: 100%;
+}
+
+.card {
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(69, 71, 71, 0.2) 0px 0px 24px;
+    width: 95%
+}
+
+.card-img1 {
+    border-radius: 10px 10px 0 0;
+    background-size: cover;
+    background-position: center;
+    background-image: "";
+    height: 300px;
+    width: 100%;
+}
+
+.card-img2 {
+    border-radius: 10px 10px 0 0;
+    background-size: cover;
+    background-position: center;
+    background-image: "";
+    height: 300px;
+    width: 100%;
+}
+
+.card-body {
+    padding: 10px 20px;
+}
+
+.card-body h2 {
+    margin: 10px 0px;
+}
+
+.card-button {
+    border: none;
+    background-color: none;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+}
+
+.violetHeart {
+    color: blueviolet;
+    opacity: 100% !important;
+}
+
+.fa-solid {
+    font-size: 1.8rem;
+    cursor: pointer;
+    opacity: 13%;
+    margin-right: 5px;
+}
+
+.fa-message {
+    font-size: 1.6rem;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.user {
+    display: flex;
+    width: 95%;
+    margin-left: 10px;
+    height: 25px;
+    margin-top: 25px;
+}
+
+.avatar1 {
+    background-color: rgb(22, 199, 248);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+    background-image: "";
+}
+
+.avatar2 {
+    background-color: rgb(22, 199, 248);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+    background-image: "";
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.text-small {
+    font-size: 0.8rem;
+}
+
+.text-description {
+    font-size: 0.9rem;
+}
+
+.reactions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.reactions a {
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+}

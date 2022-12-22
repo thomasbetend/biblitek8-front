@@ -1,0 +1,56 @@
+input {
+    background-color: white;
+    border-radius: 5%;
+    height: 40px;
+    border: white;
+    border-radius: 5px;
+    width: 95%;
+    color: black;
+    padding: 5px;
+}
+
+textarea {
+    background-color: white;
+    border-radius: 5%;
+    height: 80px;
+    border: white;
+    border-radius: 5px;
+    width: 95%;
+    color: black;
+    padding: 5px;
+}
+
+.btn {
+    background-color: rgb(22, 199, 248);
+    border-radius: 5%;
+    height: 40px;
+    border: white;
+    border-radius: 5px;
+    width: 95%;
+}
+
+.form-field {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Pacifico';
+    font-size: 1.5rem;
+    margin-left: 5%;
+}
+
+p {
+    color: blueviolet;
+    margin-left: 2.5%;
+    margin-top: 0;
+}
