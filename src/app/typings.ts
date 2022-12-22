@@ -8,3 +8,8 @@ export interface Post {
         avatar: string,
     }
 }
+
+export interface Book {
+    author: string,
+    name: string
+}

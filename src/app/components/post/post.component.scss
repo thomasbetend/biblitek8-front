@@ -58,7 +58,7 @@
 .fa-solid {
     font-size: 1.8rem;
     cursor: pointer;
-    opacity: 13%;
+    opacity: 20%;
     margin-right: 5px;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .avatar1 {
-    background-color: rgb(22, 199, 248);
+    background-color: var(--ion-color-blue1);
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -92,7 +92,7 @@
 }
 
 .avatar2 {
-    background-color: rgb(22, 199, 248);
+    background-color: var(--ion-color-blue1);
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -128,6 +128,11 @@
 }
 
 .likes {
+    display: flex;
+    align-items: center;
+}
+
+.comment {
     display: flex;
     align-items: center;
 }

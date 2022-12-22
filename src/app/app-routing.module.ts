@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'connexion',
     loadChildren: () => import('./connexion/connexion.module').then( m => m.ConnexionPageModule)
+  },
+  {
+    path: 'conversations-list',
+    loadChildren: () => import('./conversations-list/conversations-list.module').then( m => m.ConversationsListPageModule)
   }
 ];
 @NgModule({

@@ -3,7 +3,7 @@ ion-content {
 }
 
 .padding {
-    padding: 5%!important;
+    padding: 2.5%!important;
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -17,10 +17,7 @@ ion-content {
 
 ion-item {
     --ion-background-color: transparent!important;
-}
-
-ion-item label {
-    color: white;
+    margin-right: 8%;
 }
 
 .connexion {

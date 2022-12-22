@@ -6,9 +6,12 @@ import { PostListComponent } from '../components/post-list/post-list.component';
 import { AddPostComponent } from '../components/add-post/add-post.component';
 import { FormsModule } from '@angular/forms';
 import { AddPostSuccessComponent } from '../components/add-post-success/add-post-success.component';
+import { ConversationItemComponent } from '../components/conversation-item/conversation-item.component';
+import { BookItemComponent } from '../components/book-item/book-item.component';
+import { BooksListComponent } from '../components/books-list/books-list.component';
 
 @NgModule({
-  declarations: [HeaderComponent, PostComponent, PostListComponent, AddPostComponent, AddPostSuccessComponent],
+  declarations: [HeaderComponent, PostComponent, PostListComponent, AddPostComponent, AddPostSuccessComponent, ConversationItemComponent, BookItemComponent, BooksListComponent],
   imports: [
     CommonModule,
     FormsModule
@@ -18,7 +21,9 @@ import { AddPostSuccessComponent } from '../components/add-post-success/add-post
     PostComponent,
     PostListComponent,
     AddPostComponent,
-    AddPostSuccessComponent
+    AddPostSuccessComponent,
+    BookItemComponent,
+    BooksListComponent
   ]
 })
 export class SharedModule { }

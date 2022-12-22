@@ -10,11 +10,15 @@
         <!-- <i class="fa-solid fa-message"></i> -->
       </ion-button>
     </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button routerLink="/">
+        <ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
   <!-- <app-header></app-header> -->
 </ion-header>
-<ion-content [fullscreen]="false">  
-  <div class="cards">
-    <app-post-list></app-post-list>
-  </div>
+
+<ion-content>
+  
+  <app-conversations-list></app-conversations-list>
 </ion-content>

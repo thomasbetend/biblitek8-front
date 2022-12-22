@@ -7,7 +7,7 @@
 }
 
 .avatar1 {
-    background-color: rgb(22, 199, 248);
+    background-color: var(--ion-color-blue1);
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -18,6 +18,6 @@
 }
 
 ion-tab-button {
-    --color-selected: rgb(22, 199, 248);
+    --color-selected: var(--ion-color-blue1);
     --color: grey;
 }

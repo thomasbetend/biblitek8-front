@@ -12,11 +12,11 @@ body {
 ion-title {
     font-family: 'Pacifico';
     font-size: 1.6rem;
-    color: rgb(0, 208, 255);
+    color: var(--ion-color-blue1);
 }
 
 .button-inner {
-    color: rgb(0, 208, 255);
+    color: var(--ion-color-blue1);
 }
 
 ion-toolbar {

@@ -1,5 +1,17 @@
 <ion-header>
-  <app-header></app-header>
+  <ion-toolbar>
+    <ion-title>Biblitek</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/connexion">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/conversations-list">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+        <!-- <i class="fa-solid fa-message"></i> -->
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <!-- <app-header></app-header> -->
 </ion-header>
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -8,5 +20,4 @@
     </ion-toolbar>
   </ion-header>
   <app-add-post></app-add-post>
-  <ion-button routerLink="/connexion">Connexion</ion-button>
 </ion-content>

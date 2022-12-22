@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../typings';
+import { Book } from 'src/app/typings';
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  selector: 'app-books-list',
+  templateUrl: './books-list.component.html',
+  styleUrls: ['./books-list.component.scss'],
 })
-export class Tab3Page implements OnInit {
+export class BooksListComponent implements OnInit {
 
   bookChoice?: string;
   bookList: string[] = [];
   name?: string;
   author?: string;
   bookName?: string;
-  isBookListFull?: boolean;
-  maxBooks = 3;
 
   books: Book[] = [
     {
@@ -39,21 +37,15 @@ export class Tab3Page implements OnInit {
     }
   ]
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {
-    this.isBookListFull = false;
-  }
+  ngOnInit() {}
 
   onAddBook() {
     if(!this.bookChoice) return;
     this.bookList.push(this.bookChoice);
     this.bookName = this.bookChoice;
     console.log(this.bookList);
-    if(this.bookList.length >= this.maxBooks){
-      this.isBookListFull = true;
-      return;
-    }
   }
 
 }

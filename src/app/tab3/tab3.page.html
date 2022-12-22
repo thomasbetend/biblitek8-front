@@ -1,12 +1,36 @@
 <ion-header>
-  <app-header></app-header>
+  <ion-toolbar>
+    <ion-title class="title">
+        Biblitek
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/connexion">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/conversations-list">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+        <!-- <i class="fa-solid fa-message"></i> -->
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <!-- <app-header></app-header> -->
 </ion-header>
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <h1>Ma Biblitek idéale</h1>
+  <!-- <ion-searchbar search-icon="search-circle" placeholder="Custom Search Icon"></ion-searchbar> -->
+  <h6>
+    Sélectionnez 3 livres pour former <br> votre bibliothèque idéale
+  </h6>
+  <ion-list>
+    <ion-item>
+      <ion-select interface="popover" placeholder="Sélectionner" [(ngModel)]="bookChoice">
+        <ion-select-option *ngFor="let book of books" [value]="book.name + ' - ' +  book.author">{{ book.name }} - {{ book.author }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <div *ngFor="let book of bookList">
+    <app-book-item [bookName]="book"></app-book-item>
+  </div>
+  <ion-button *ngIf="!isBookListFull" expand="block" (click)="onAddBook()">Ajouter livre</ion-button>
+  <ion-button *ngIf="isBookListFull" expand="block">Valider votre biblitek</ion-button>
 </ion-content>
