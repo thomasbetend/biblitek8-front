@@ -5,7 +5,7 @@ import { AddPostComponent } from './components/add-post/add-post.component';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
   },
   {
     path: 'add-post-success',

@@ -3,7 +3,7 @@ ion-content {
 }
 
 .padding {
-    padding: 2.5%!important;
+    padding: 10%!important;
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -39,4 +39,11 @@ ion-button {
 
 .button-inner {
     color: black !important;
+}
+
+.error {
+    color: var(--ion-color-color2);
+    margin-left: 7%;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }

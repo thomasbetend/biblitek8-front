@@ -12,12 +12,13 @@
     </div>
     <ion-item lines="full">
       <ion-label color="primary">Email</ion-label>
-      <ion-input color="primary" type="mail" placeholder=""></ion-input>
+      <ion-input color="primary" type="mail" placeholder="" [(ngModel)]="user.email"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label color="primary">Password</ion-label>
-      <ion-input color="primary" type="password" placeholder=""></ion-input>
+      <ion-input color="primary" type="password" placeholder="" [(ngModel)]="user.password"></ion-input>
     </ion-item>
-    <ion-button color="primary" expand="block" class="connexion" [routerLink]="['/']">Connexion</ion-button>
+    <div *ngIf="errorField" class="error">Remplissez tous les champs</div>
+    <ion-button color="primary" expand="block" class="connexion" type="submit" (click)="submitUser()" [routerLink]="['/']">Connexion</ion-button>
   </div>
 </ion-content>

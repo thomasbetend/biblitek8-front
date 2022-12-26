@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigToken } from '@ionic/angular/providers/config';
+import { stringify } from 'querystring';
+import { UserModel } from '../models/user.model';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-connexion',
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnexionPage implements OnInit {
 
-  constructor() { }
+  user: UserModel = new UserModel();
+  errorField?: boolean;
+
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
+    this.errorField = false;
+  }
+
+  submitUser() {
+
+    if(!this.user.email || !this.user.password) {
+      this.errorField = true;
+      return;
+    }
+
+    this.apiService.login(this.user!).subscribe((data)=>{
+        console.log(data);
+        localStorage.setItem('token', Object.values(data)[0]);
+    })
   }
 
 }
