@@ -56,4 +56,13 @@ export class Tab3Page implements OnInit {
     }
   }
 
+  onDeleteBook(bookName: string, index: number) {
+    console.log(`Deleting book : ${bookName}`);
+    this.bookList.splice(index, 1);
+    if(this.bookList.length <= this.maxBooks){
+      this.isBookListFull = false;
+      return;
+    }
+  }
+
 }

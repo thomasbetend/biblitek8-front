@@ -2,10 +2,10 @@
   <ion-toolbar>
     <ion-title>Biblitek</ion-title>
     <ion-buttons slot="primary">
-      <ion-button routerLink="/connexion">
+      <ion-button [routerLink]="['/home']">
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button>
-      <ion-button routerLink="/conversations-list">
+      <ion-button [routerLink]="['/conversations-list']">
         <ion-icon name="chatbubbles-outline"></ion-icon>
         <!-- <i class="fa-solid fa-message"></i> -->
       </ion-button>
@@ -13,7 +13,7 @@
   </ion-toolbar>
   <!-- <app-header></app-header> -->
 </ion-header>
-<ion-content [fullscreen]="false">  
+<ion-content [fullscreen]="true">
   <div class="cards">
     <app-post-list></app-post-list>
   </div>

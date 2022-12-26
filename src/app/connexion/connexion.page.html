@@ -1,18 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <div class="padding">
     <div class="biblitek">
       Biblitek
     </div>
-    <ion-item>
+    <ion-item lines="full">
       <ion-label color="primary">Email</ion-label>
-      <ion-input color="primary" type="mail" placeholder="Adresse mail"></ion-input>
+      <ion-input color="primary" type="mail" placeholder=""></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item lines="full">
       <ion-label color="primary">Password</ion-label>
-      <ion-input color="primary" type="password" placeholder="Mot de passe"></ion-input>
+      <ion-input color="primary" type="password" placeholder=""></ion-input>
     </ion-item>
-    <ion-button color="primary" expand="block" class="connexion" routerLink="">Connexion</ion-button>
-    <br>
-    <ion-button color="light" expand="block">Inscription</ion-button>
+    <ion-button color="primary" expand="block" class="connexion" [routerLink]="['/']">Connexion</ion-button>
   </div>
 </ion-content>

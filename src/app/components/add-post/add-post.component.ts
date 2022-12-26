@@ -25,7 +25,6 @@ export class AddPostComponent implements OnInit {
   }
 
   addPost() {
-
     if (!this.post.description || !this.post.image) {
       this.error = true;
       console.log(this.error);

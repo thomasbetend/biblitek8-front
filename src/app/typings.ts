@@ -13,3 +13,9 @@ export interface Book {
     author: string,
     name: string
 }
+
+export interface User {
+    firstname: string,
+    lastname: string
+}
+

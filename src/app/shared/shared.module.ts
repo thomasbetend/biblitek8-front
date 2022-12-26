@@ -23,7 +23,8 @@ import { BooksListComponent } from '../components/books-list/books-list.componen
     AddPostComponent,
     AddPostSuccessComponent,
     BookItemComponent,
-    BooksListComponent
+    BooksListComponent,
+    ConversationItemComponent
   ]
 })
 export class SharedModule { }

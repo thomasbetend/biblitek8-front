@@ -4,10 +4,10 @@
         Biblitek
     </ion-title>
     <ion-buttons slot="primary">
-      <ion-button routerLink="/connexion">
+      <ion-button [routerLink]="['/home']">
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button>
-      <ion-button routerLink="/conversations-list">
+      <ion-button [routerLink]="['/conversations-list']">
         <ion-icon name="chatbubbles-outline"></ion-icon>
         <!-- <i class="fa-solid fa-message"></i> -->
       </ion-button>
@@ -28,9 +28,9 @@
       </ion-select>
     </ion-item>
   </ion-list>
-  <div *ngFor="let book of bookList">
-    <app-book-item [bookName]="book"></app-book-item>
+  <ion-button *ngIf="isBookListFull" expand="block" class="btn btn-validate">Valider la biblitek</ion-button>
+  <ion-button *ngIf="!isBookListFull" expand="block" (click)="onAddBook()" class="btn">Ajouter livre</ion-button>
+  <div *ngFor="let book of bookList; let i = index">
+    <app-book-item [bookName]="book" (onDelete)="onDeleteBook($event, i)"></app-book-item>
   </div>
-  <ion-button *ngIf="!isBookListFull" expand="block" (click)="onAddBook()">Ajouter livre</ion-button>
-  <ion-button *ngIf="isBookListFull" expand="block">Valider votre biblitek</ion-button>
 </ion-content>

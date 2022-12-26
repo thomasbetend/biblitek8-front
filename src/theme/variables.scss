@@ -4,14 +4,17 @@
 /** Ionic CSS Variables **/
 :root {
   /**  new colors **/
-  --ion-color-blue1: #00D0FF;
-  --ion-color-blue1-rgb: 0, 208, 255; 
+  --ion-color-color1: #00D0FF;
+  --ion-color-color1-rgb: 0, 208, 255; 
 
+  --ion-color-color2: blueviolet;
+  --ion-color-color2-rgb: blueviolet;
+  
   /** primary **/
   --ion-color-primary: #00D0FF;
   --ion-color-primary-rgb: 56, 128, 255;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: black;
   --ion-color-primary-shade: #019abc;
   --ion-color-primary-tint: #03b1d8;
 
@@ -48,12 +51,12 @@
   --ion-color-warning-tint: #ffca22;
 
   /** danger **/
-  --ion-color-danger: #eb445a;
-  --ion-color-danger-rgb: 235, 68, 90;
+  --ion-color-danger: blueviolet;
+  --ion-color-danger-rgb: blueviolet;
   --ion-color-danger-contrast: #ffffff;
   --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade: #cf3c4f;
-  --ion-color-danger-tint: #ed576b;
+  --ion-color-danger-shade: rgb(111, 23, 192);
+  --ion-color-danger-tint: rgb(94, 14, 169);
 
   /** dark **/
   --ion-color-dark: #222428;
@@ -89,8 +92,8 @@
   body {
     --ion-color-primary: #00D0FF;
     --ion-color-primary-rgb: 66,140,255;
-    --ion-color-primary-contrast: #ffffff;
-    --ion-color-primary-contrast-rgb: 255,255,255;
+    --ion-color-primary-contrast: #000000;
+    --ion-color-primary-contrast-rgb: black;
     --ion-color-primary-shade: #019abc;
     --ion-color-primary-tint: #03b1d8;
 
@@ -122,12 +125,12 @@
     --ion-color-warning-shade: #e0bb2e;
     --ion-color-warning-tint: #ffd948;
 
-    --ion-color-danger: #ff4961;
-    --ion-color-danger-rgb: 255,73,97;
+    --ion-color-danger: blueviolet;
+    --ion-color-danger-rgb: blueviolet;
     --ion-color-danger-contrast: #ffffff;
     --ion-color-danger-contrast-rgb: 255,255,255;
-    --ion-color-danger-shade: #e04055;
-    --ion-color-danger-tint: #ff5b71;
+    --ion-color-danger-shade: rgb(111, 23, 192);
+    --ion-color-danger-tint: rgb(94, 14, 169);
 
     --ion-color-dark: #f4f5f8;
     --ion-color-dark-rgb: 244,245,248;

@@ -1,7 +1,7 @@
-ion-title {
+.title {
     font-family: 'Pacifico' !important;
     font-size: 1.6rem;
-    color: var(--ion-color-blue1);
+    color: var(--ion-color-color1);
     opacity: 100% !important;
 }
 
@@ -19,12 +19,14 @@ ion-list {
 
 h6 {
     font-style: italic;
-    color: var(--ion-color-blue1);
+    color: var(--ion-color-color1);
     margin: 5%;
+    font-size: 0.8rem;
 }
 
-ion-button {
+.btn {
     margin: 2.5%;
     margin-top: 5%;
 }
+
 

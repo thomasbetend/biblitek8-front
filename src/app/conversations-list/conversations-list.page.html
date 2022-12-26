@@ -2,23 +2,24 @@
   <ion-toolbar>
     <ion-title>Biblitek</ion-title>
     <ion-buttons slot="primary">
-      <ion-button routerLink="/connexion">
+      <ion-button routerLink="/home">
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button>
       <ion-button routerLink="/conversations-list">
         <ion-icon name="chatbubbles-outline"></ion-icon>
-        <!-- <i class="fa-solid fa-message"></i> -->
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="secondary">
-      <ion-button routerLink="/">
-        <ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
   <!-- <app-header></app-header> -->
 </ion-header>
 
-<ion-content>
-  
-  <app-conversations-list></app-conversations-list>
+<ion-content [fullscreen]="true">
+  <h1>Mes messages</h1>
+  <ion-searchbar search-icon="search-circle" placeholder="Nouvelle conversation"></ion-searchbar>
+  <div *ngFor="let user of usersMessages; let i = index">
+    <app-conversation-item [user]="user"></app-conversation-item>
+  </div>
 </ion-content>

@@ -18,6 +18,14 @@ const routes: Routes = [
   {
     path: 'conversations-list',
     loadChildren: () => import('./conversations-list/conversations-list.module').then( m => m.ConversationsListPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'registration',
+    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
   }
 ];
 @NgModule({
