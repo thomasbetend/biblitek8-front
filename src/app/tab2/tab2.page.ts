@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +10,11 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(public authService: AuthService, private router: Router) {}
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 
 }

@@ -19,6 +19,7 @@
       <ion-input color="primary" type="password" placeholder="" [(ngModel)]="user.password"></ion-input>
     </ion-item>
     <div *ngIf="errorField" class="error">Remplissez tous les champs</div>
-    <ion-button color="primary" expand="block" class="connexion" type="submit" (click)="submitUser()" [routerLink]="['/']">Connexion</ion-button>
+    <div *ngIf="errorConnexion" class="error">Vos identifiants sont faux</div>
+    <ion-button color="primary" expand="block" class="connexion" type="submit" (click)="submitUser()">Connexion</ion-button>
   </div>
 </ion-content>

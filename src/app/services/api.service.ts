@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { Post } from '../typings';
+import { Post, Token } from '../typings';
 import { PostModel } from '../models/post.model';
 import { UserModel } from '../models/user.model';
 import { BehaviorSubject } from 'rxjs';
-// import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AsyncLocalStorage } from 'async_hooks';
 
 @Injectable({
     providedIn: 'root'
@@ -13,9 +14,9 @@ export class ApiService {
 
     baseURL: string = "http://localhost:8000/api";
     baseURL2: string = "http://localhost:8000";
+    token? = localStorage.getItem('token');
 
-    constructor(private http: HttpClient, /* public jwtHelper: JwtHelperService */) { 
-        this.loadToken();
+    constructor(private http: HttpClient /* public jwtHelper: JwtHelperService */) { 
     }
 
     getPostsList() {
@@ -41,24 +42,4 @@ export class ApiService {
         return this.http.post(`${this.baseURL}/post_shares.json`, body, {'headers': headers})
     }
 
-    login(user: UserModel) {
-        const headers = {'content-type': 'application/json'}  
-        const body=JSON.stringify(user);
-        console.log(body)
-        return this.http.post(`${this.baseURL2}/auth`, body, {'headers': headers})
-    }
-
-    /* isAuthenticated(): boolean {
-        const token = localStorage.getItem('token');
-        return !this.jwtHelper.isTokenExpired(token);
-    } */
-
-    isAuthenticated?: boolean;
-    token = '';
-
-    async loadToken() {
-        const token = await localStorage.getItem('token');
-        console.log(token);
-        token ? this.isAuthenticated : !this.isAuthenticated;
-    }
 }
