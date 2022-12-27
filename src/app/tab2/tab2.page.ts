@@ -10,11 +10,6 @@ import { AuthService } from '../services/auth.service';
 })
 export class Tab2Page {
 
-  constructor(public authService: AuthService, private router: Router) {}
-
-  onLogout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
+  constructor() {}
 
 }

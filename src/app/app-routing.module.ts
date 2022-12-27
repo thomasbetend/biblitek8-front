@@ -16,24 +16,28 @@ const routes: Routes = [
   },
   {
     path: 'connexion',
-    loadChildren: () => import('./connexion/connexion.module').then( m => m.ConnexionPageModule)
+    loadChildren: () => import('./pages/connexion/connexion.module').then( m => m.ConnexionPageModule)
   },
   {
     canActivate: [AuthGuard],
     path: 'conversations-list',
-    loadChildren: () => import('./conversations-list/conversations-list.module').then( m => m.ConversationsListPageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'registration',
-    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
+    loadChildren: () => import('./pages/conversations-list/conversations-list.module').then( m => m.ConversationsListPageModule)
   },
   {
     path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'registration',
+    loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule)
+  },
+  {
+    path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   }
 ];
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../typings';
+import { User } from '../../typings';
 
 @Component({
   selector: 'app-conversations-list',

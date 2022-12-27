@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigToken } from '@ionic/angular/providers/config';
 import { stringify } from 'querystring';
-import { UserModel } from '../models/user.model';
+import { UserModel } from '../../models/user.model';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
+import { StorageService } from '../../services/storage.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ConnexionPage implements OnInit {
   errorField?: boolean;
   errorConnexion?: boolean;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private storageService: StorageService) {}
 
   ngOnInit() {
     this.errorField = false;
@@ -36,7 +37,7 @@ export class ConnexionPage implements OnInit {
     .subscribe({
       next: (data)=>{
         console.log(data);
-        localStorage.setItem('token', data.token);
+        this.storageService.set('token', data.token);
         this.router.navigate(['/']);
       }, 
       error:(err)=>{

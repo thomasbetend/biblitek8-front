@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ConversationsListPageRoutingModule } from './conversations-list-routing.module';
 
 import { ConversationsListPage } from './conversations-list.page';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [

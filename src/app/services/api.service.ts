@@ -13,7 +13,6 @@ import { AsyncLocalStorage } from 'async_hooks';
 export class ApiService {
 
     baseURL: string = "http://localhost:8000/api";
-    baseURL2: string = "http://localhost:8000";
     token? = localStorage.getItem('token');
 
     constructor(private http: HttpClient /* public jwtHelper: JwtHelperService */) { 
