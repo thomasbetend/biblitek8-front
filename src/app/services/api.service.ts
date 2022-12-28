@@ -37,8 +37,8 @@ export class ApiService {
     addPost(post: PostModel) {
         const headers = {'content-type': 'application/json'}  
         const body=JSON.stringify(post);
-        console.log(body)
-        return this.http.post(`${this.baseURL}/post_shares.json`, body, {'headers': headers})
+        console.log(body);
+        return this.http.post(`${this.baseURL}/post_shares.json`, body, {'headers': headers});
     }
 
 }

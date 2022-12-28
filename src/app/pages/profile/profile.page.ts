@@ -14,6 +14,10 @@ import { Storage } from '@ionic/storage-angular';
 export class ProfilePage implements OnInit {
 
   token?: string;
+  data: any;
+  pseudo?: string;
+  avatar?: string;
+  imageUrl = "../../assets/images/";
 
   constructor(public authService: AuthService, private router: Router, private storageService: StorageService, private storage: Storage) { }
 
@@ -23,6 +27,8 @@ export class ProfilePage implements OnInit {
 
       this.authService.getProfile(token).subscribe((data)=>{
         console.log(data);
+        this.pseudo = data.pseudo;
+        this.avatar = data.avatar;
       })
     });
 

@@ -1,11 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Biblitek</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['/profile']">
+        <!-- <ion-icon slot="icon-only" name="person-circle"></ion-icon> -->
+        <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + avatar + ')'}"></div>
+      </ion-button>
+      <ion-button [routerLink]="['/conversations-list']">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <ion-button (click)="onLogout()">Déconnexion</ion-button>
-
+  <div class="padding">
+    <div>
+      Bienvenue {{ pseudo }}
+    </div>
+    <ion-button (click)="onLogout()">Déconnexion</ion-button>
+  </div>
 </ion-content>

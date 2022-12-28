@@ -34,11 +34,11 @@ export class Tab1Page {
     },
   ]
 
-  constructor(private apiService: ApiService) { 
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit() {
     this.refreshList();
   }
-
-  ngOnInit() {}
 
   refreshList() {
     this.apiService.getPostsList().subscribe(data => {

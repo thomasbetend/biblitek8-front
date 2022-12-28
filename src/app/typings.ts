@@ -22,3 +22,10 @@ export interface User {
 export interface Token {
     token: string;
 }
+
+export interface Profile {
+    avatar: string;
+    email: string;
+    pseudo: string;
+    id: number;
+}

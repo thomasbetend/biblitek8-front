@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
-import { Token } from '../typings';
+import { Profile, Token } from '../typings';
 import { HttpClient } from "@angular/common/http";
 import { StorageService } from './storage.service';
 
@@ -45,6 +45,6 @@ export class AuthService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.get(`${this.baseURL2}/api/me`, { 'headers' : headers});
+    return this.http.get<Profile>(`${this.baseURL2}/api/me`, { 'headers' : headers});
   }
 }
