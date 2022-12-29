@@ -22,7 +22,9 @@ export class ProfilePage implements OnInit {
   id?: number;
   imageUrl = "../../assets/images/";
 
-  constructor(public modalCtrl: ModalController, public authService: AuthService, private router: Router, private apiService: ApiService, private storage: Storage) { }
+  constructor(public modalCtrl: ModalController, public authService: AuthService, private router: Router, private apiService: ApiService, private storage: Storage) { 
+    this.getPostsByUserId();
+  }
 
   ngOnInit() {
     this.storage.get('token').then((token)=>{
@@ -37,7 +39,7 @@ export class ProfilePage implements OnInit {
     });
 
     setTimeout(()=>{
-      this.getPostsById();
+      this.getPostsByUserId();
     }, 500);
   }
 
@@ -46,7 +48,7 @@ export class ProfilePage implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  getPostsById() {
+  getPostsByUserId() {
     if (!this.id) return;
     this.apiService.getPostsByUserId(this.id).subscribe((data)=>{
       console.log(data["hydra:member"]);

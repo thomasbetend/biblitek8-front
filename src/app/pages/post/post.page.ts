@@ -33,4 +33,11 @@ export class PostPage implements OnInit {
   addLike() {
 
   }
+
+  onDeletePost() {
+    if (!this.id) return;
+    this.apiService.deletePost(this.id).subscribe((data)=>{
+      console.log(data);
+    })
+  }
 }

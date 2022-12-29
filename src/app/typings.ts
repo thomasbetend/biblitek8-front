@@ -33,3 +33,10 @@ export interface Profile {
 export interface PostArray {
     "hydra:member": [];
 }
+
+export interface Comment {
+    content: "Je l'ai lu et je confirme",
+    date: "2022-12-29T18:20:34.978Z",
+    user: "/api/users/2",
+    postShare: "/api/post_shares/19"
+}

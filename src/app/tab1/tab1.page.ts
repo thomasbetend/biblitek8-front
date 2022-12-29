@@ -34,7 +34,9 @@ export class Tab1Page {
     },
   ]
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {
+    this.refreshList();
+  }
 
   ngOnInit() {
     this.refreshList();

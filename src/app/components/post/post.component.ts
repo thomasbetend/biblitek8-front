@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Post } from 'src/app/typings';
 import { Storage } from '@ionic/storage-angular';
@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
   token?: string;
   avatar?: string;
   pseudo?:string;
+  @Output() showComments = new EventEmitter<number>();
 
   constructor(private authService: AuthService, private http: HttpClient, private storage: Storage) { }
 
@@ -42,6 +43,11 @@ export class PostComponent implements OnInit {
     this.storage.get('token').then((val)=>{
       this.token = val;
     })
+  }
+
+  onClickShowComments() {
+    if (!this.post) return;
+    this.showComments.emit(this.post.id);
   }
 
 }
