@@ -24,7 +24,14 @@ export class AuthService {
 }
 
   logout() {
-      this.storage.clear();
+      this.storage.clear().then((data) => {
+        console.log('clear', data);
+      });
+      setTimeout(()=>{
+        this.storage.get('token').then((data)=>{
+          console.log('token3', data);
+        })
+      }, 1000);
   }
 
   isAuthenticated(): Promise<boolean> {
@@ -32,9 +39,9 @@ export class AuthService {
           setTimeout(() => {
               this.storage.get('token').then((val)=>{
                 this.token = val;
-                //console.log('Token1', this.token);
+                console.log('Token1', this.token);
               });
-              //console.log('Token2', this.token);
+              console.log('Token2', this.token);
               resolve(this.token !== null);
           }, 800);
       });
@@ -47,4 +54,5 @@ export class AuthService {
     });
     return this.http.get<Profile>(`${this.baseURL2}/api/me`, { 'headers' : headers});
   }
+
 }

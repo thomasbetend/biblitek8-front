@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 import { Storage } from '@ionic/storage-angular';
+import { ApiService } from 'src/app/services/api.service';
+import { ModalController } from '@ionic/angular';
 
 
 @Component({
@@ -14,12 +16,13 @@ import { Storage } from '@ionic/storage-angular';
 export class ProfilePage implements OnInit {
 
   token?: string;
-  data: any;
+  postArray: any;
   pseudo?: string;
   avatar?: string;
+  id?: number;
   imageUrl = "../../assets/images/";
 
-  constructor(public authService: AuthService, private router: Router, private storageService: StorageService, private storage: Storage) { }
+  constructor(public modalCtrl: ModalController, public authService: AuthService, private router: Router, private apiService: ApiService, private storage: Storage) { }
 
   ngOnInit() {
     this.storage.get('token').then((token)=>{
@@ -29,14 +32,26 @@ export class ProfilePage implements OnInit {
         console.log(data);
         this.pseudo = data.pseudo;
         this.avatar = data.avatar;
+        this.id = data.id;
       })
     });
 
+    setTimeout(()=>{
+      this.getPostsById();
+    }, 500);
   }
 
   onLogout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  getPostsById() {
+    if (!this.id) return;
+    this.apiService.getPostsByUserId(this.id).subscribe((data)=>{
+      console.log(data["hydra:member"]);
+      this.postArray = data["hydra:member"];
+    })
   }
 
 }

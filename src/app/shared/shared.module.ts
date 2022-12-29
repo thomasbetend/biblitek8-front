@@ -9,9 +9,10 @@ import { AddPostSuccessComponent } from '../components/add-post-success/add-post
 import { ConversationItemComponent } from '../components/conversation-item/conversation-item.component';
 import { BookItemComponent } from '../components/book-item/book-item.component';
 import { BooksListComponent } from '../components/books-list/books-list.component';
+import { PersonalPostComponent } from '../components/personal-post/personal-post.component';
 
 @NgModule({
-  declarations: [HeaderComponent, PostComponent, PostListComponent, AddPostComponent, AddPostSuccessComponent, ConversationItemComponent, BookItemComponent, BooksListComponent],
+  declarations: [HeaderComponent, PostComponent, PostListComponent, AddPostComponent, AddPostSuccessComponent, ConversationItemComponent, BookItemComponent, BooksListComponent, PersonalPostComponent],
   imports: [
     CommonModule,
     FormsModule
@@ -24,7 +25,8 @@ import { BooksListComponent } from '../components/books-list/books-list.componen
     AddPostSuccessComponent,
     BookItemComponent,
     BooksListComponent,
-    ConversationItemComponent
+    ConversationItemComponent,
+    PersonalPostComponent
   ]
 })
 export class SharedModule { }

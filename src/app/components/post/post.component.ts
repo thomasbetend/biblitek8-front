@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { Post } from 'src/app/typings';
-import { PostListComponent } from '../post-list/post-list.component';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-post',
@@ -13,8 +15,11 @@ export class PostComponent implements OnInit {
   @Input() id?: string ;
   imageUrl = "../../assets/images/";
   like: number = 0;
+  token?: string;
+  avatar?: string;
+  pseudo?:string;
 
-  constructor() { }
+  constructor(private authService: AuthService, private http: HttpClient, private storage: Storage) { }
 
   ngOnInit() {
   }
@@ -29,6 +34,14 @@ export class PostComponent implements OnInit {
     }
 
     console.log(this.like);
+    console.log(this.post);
+
+  }
+
+  getToken() {
+    this.storage.get('token').then((val)=>{
+      this.token = val;
+    })
   }
 
 }

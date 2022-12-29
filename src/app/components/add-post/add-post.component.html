@@ -1,18 +1,20 @@
 <h1>Mon biblipost</h1>
-<div class="form" *ngIf="!isPostSuccess">
+<div class="form">
   <div class="form-field">
     <label for="description"></label>
     <textarea type="text" class="form-control" id="description" placeholder="Texte du post" [(ngModel)]="post.description" required></textarea>
   </div>
   <div class="form-field">
-    <label for="description"></label>
-    <input type="text" class="form-control" id="description" placeholder="Image" [(ngModel)]="post.image" required/>
+    <label for="image"></label>
+    <input type="text" class="form-control" id="image" placeholder="Image" [(ngModel)]="post.image" required/>
   </div>
   <div class="form-field">
     <button type="submit" (click)="addPost()" class="btn btn-primary">Ajouter</button>
   </div>
-  <p *ngIf="error">
+  <p *ngIf="errorFields">
     Remplissez tous les champs
   </p>
+  <p *ngIf="isPostFailed">
+    Une erreur est survenue
+  </p>
 </div>
-<app-add-post-success *ngIf="isPostSuccess"></app-add-post-success>

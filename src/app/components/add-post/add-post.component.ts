@@ -16,17 +16,19 @@ export class AddPostComponent implements OnInit {
 
   post: PostModel = new PostModel();
   data: any;
-  isPostSuccess = false;
-  error = false;
+  isPostFailed = false;
+  errorFields = false;
   token?: string;
   id?: number;
 
   constructor(private apiService : ApiService, private router: Router, private authService: AuthService, private http: HttpClient, private storage: Storage) { }
 
   ngOnInit(): void { 
-    this.error = false;
-    this.isPostSuccess = false;
+    this.errorFields = false;
+    this.isPostFailed = false;
     this.getProfile();
+    this.post.description = '';
+    this.post.image = '';
   }
 
   getToken() {
@@ -38,37 +40,34 @@ export class AddPostComponent implements OnInit {
   getProfile() {
     this.getToken();
     setTimeout(()=>{
-      //console.log('token', this.token);
       if(!this.token) return;
       this.authService.getProfile(this.token).subscribe((data)=>{
         console.log(data);
         this.id = data.id;
-        //console.log('id1', this.id);
       });
     }, 1000)
-
   }
 
   addPost() {
     if (!this.post.description || !this.post.image) {
-      this.error = true;
-      console.log(this.error);
+      this.errorFields = true;
+      console.log(this.errorFields);
       return;
     }
 
     this.getProfile();
-    
-    // this.post.user.id = this.id;
 
+    this.post.user = `/api/users/${this.id}`;
+    
     this.apiService.addPost(this.post!).subscribe({
       next: (data)=>{
         console.log(data);
         this.router.navigate(['/']);
-        this.isPostSuccess = true;
+        this.isPostFailed = false;
       }, 
       error:(err)=>{
         console.log(err);
-        this.isPostSuccess = false;
+        this.isPostFailed = true;
       } 
     });
   }

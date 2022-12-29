@@ -29,3 +29,7 @@ export interface Profile {
     pseudo: string;
     id: number;
 }
+
+export interface PostArray {
+    "hydra:member": [];
+}

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Biblitek</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['/profile']">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="['/conversations-list']">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  {{ id }}
+  <div class="cardTotal">
+    <div class="card">
+        <div class="card-header">
+          <div class="card-img2" [ngStyle]="{'background-image' : 'url(' + imageUrl + data?.image + ')'}"></div>
+        </div>
+        <div class="card-body">
+            <p class="text-description">{{ data?.description }}</p>
+            <div class="reactions">
+              <div class="likes">
+                <p (click)="addLike()"><i class="fa-solid fa-heart" [ngClass]="{ 'violetHeart' : like === 1}"></i></p>
+                <p class="text-small">{{ like }}</p>
+              </div>
+              <div class="comment" routerLink="/conversations-list">
+                <i class="fa-solid fa-message"></i>
+                <a>Voir les commentaires</a>
+              </div>
+            </div>
+        </div>
+    </div>  
+  </div>
+
+</ion-content>

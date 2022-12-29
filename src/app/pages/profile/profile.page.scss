@@ -27,5 +27,17 @@ ion-title {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: 100px;
+    margin-top: 30px;
 }
+
+.pseudo {
+    color: var(--ion-color-color1);
+    margin-bottom: 10px;
+    font-family: 'Pacifico';
+}
+
+.disconnection {
+    min-height: 44px;
+    margin-bottom: 20px;
+}
+

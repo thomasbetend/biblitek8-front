@@ -3,8 +3,8 @@
     <ion-title>Biblitek</ion-title>
     <ion-buttons slot="primary">
       <ion-button [routerLink]="['/profile']">
-        <!-- <ion-icon slot="icon-only" name="person-circle"></ion-icon> -->
-        <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + avatar + ')'}"></div>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        <!-- <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + avatar + ')'}"></div> -->
       </ion-button>
       <ion-button [routerLink]="['/conversations-list']">
         <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -18,9 +18,10 @@
 
 <ion-content>
   <div class="padding">
-    <div>
-      Bienvenue {{ pseudo }}
+    <div class="pseudo">Bienvenue {{ pseudo }}</div>
+    <ion-button class="disconnection" fill="outline" (click)="onLogout()">Déconnexion</ion-button>
+    <div class="personal-post" *ngFor="let post of postArray" >
+      <app-personal-post [post]="post" [routerLink]="['/post', post.id]"></app-personal-post>
     </div>
-    <ion-button (click)="onLogout()">Déconnexion</ion-button>
   </div>
 </ion-content>
