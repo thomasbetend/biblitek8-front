@@ -52,7 +52,7 @@ export class Tab1Page {
 
   showComments(id: number, index: number) {
     console.log(`Showing : ${id}`);
-    this.router.navigate(["/post-and-comments", this.data[index].id])
+    this.router.navigate(["/post-and-comments", this.data[index].id]);
   }
 
 }

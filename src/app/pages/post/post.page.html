@@ -28,7 +28,7 @@
                 <p (click)="addLike()"><i class="fa-solid fa-heart" [ngClass]="{ 'violetHeart' : like === 1}"></i></p>
                 <p class="text-small">{{ like }}</p>
               </div>
-              <div class="comment" routerLink="/conversations-list">
+              <div class="comment" [routerLink]="['/post-and-comments', id]">
                 <i class="fa-solid fa-message"></i>
                 <a>Voir les commentaires</a>
               </div>

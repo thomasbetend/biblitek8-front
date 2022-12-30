@@ -19,18 +19,24 @@
   <div class="padding">
     <div class="user">
       <div class="profile">
-        <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + post?.user?.avatar + ')'}"></div>
-        <p class="text-bold">pseudo: {{ post?.user?.pseudo }}</p>
+        <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + post1?.user + ')'}"></div> <!-- put avatar instead -->
+        <p class="text-bold">pseudo: {{ post1?.user }}</p>
       </div>
     </div>
     <div class="description">
-      {{ post?.description }}
+      {{ post1?.description }}
     </div>
     <div class="comments" *ngFor="let comment of data">
-      <div>{{ comment.content }}</div>
+      <div class="user">
+        <div class="profile">
+          <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + comment?.user?.avatar + ')'}"></div>
+          <p class="text-bold">pseudo: {{ comment?.user }}</p>
+        </div>
+      </div>
+      <div class="content">{{ comment.content }}</div>
     </div>
-    <form (ngSubmit)="commentForm()">
-      <ion-input [(ngModel)]="comment" name="comment" placeholder="Ajouter un commentaire" class="custom"></ion-input>
+    <form (ngSubmit)="addComment()">
+      <ion-input [(ngModel)]="commentContent" name="comment" placeholder="Ajouter un commentaire" class="custom"></ion-input>
     </form>
   </div>
 </ion-content>

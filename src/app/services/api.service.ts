@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { CommentArray, Post, PostArray } from '../typings';
 import { PostModel } from '../models/post.model';
+import { CommentModel } from '../models/comment.model';
 
 
 @Injectable({
@@ -50,6 +51,32 @@ export class ApiService {
 
     getCommentsByPostId(id: number) {
         return this.http.get<CommentArray>(`${this.baseURL}/comments?page=1&post_share=${id}`);
+    }
+
+    addComment(comment: CommentModel) {
+        const headers = {'content-type': 'application/json'}  
+        console.log('body', comment);
+        return this.http.post(`${this.baseURL}/comments.json`, comment, {'headers': headers});
+    }
+
+    padTo2Digits(num: number) {
+        return num.toString().padStart(2, '0');
+    }
+
+    formatDate(date: Date) {
+        return (
+            [
+                date.getFullYear(),
+                this.padTo2Digits(date.getMonth() + 1),
+                this.padTo2Digits(date.getDate()),
+            ].join('-') +
+            ' ' +
+            [
+                this.padTo2Digits(date.getHours()),
+                this.padTo2Digits(date.getMinutes()),
+                this.padTo2Digits(date.getSeconds()),
+            ].join(':')
+        );
     }
 
 }

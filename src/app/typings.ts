@@ -9,6 +9,13 @@ export interface Post {
     }
 }
 
+export interface Post2 {
+    id: number,
+    image: string,
+    description: string,
+    user: string
+}
+
 export interface Book {
     author: string,
     name: string
