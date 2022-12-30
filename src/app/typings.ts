@@ -34,6 +34,10 @@ export interface PostArray {
     "hydra:member": [];
 }
 
+export interface CommentArray {
+    "hydra:member": [];
+}
+
 export interface Comment {
     content: "Je l'ai lu et je confirme",
     date: "2022-12-29T18:20:34.978Z",

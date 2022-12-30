@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Post } from '../typings';
 
@@ -34,7 +35,7 @@ export class Tab1Page {
     },
   ]
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router: Router) {
     this.refreshList();
   }
 
@@ -49,5 +50,9 @@ export class Tab1Page {
   });
   }
 
+  showComments(id: number, index: number) {
+    console.log(`Showing : ${id}`);
+    this.router.navigate(["/post-and-comments", this.data[index].id])
+  }
 
 }

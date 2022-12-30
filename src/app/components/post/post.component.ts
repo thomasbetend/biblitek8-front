@@ -47,6 +47,7 @@ export class PostComponent implements OnInit {
 
   onClickShowComments() {
     if (!this.post) return;
+    console.log(this.post);
     this.showComments.emit(this.post.id);
   }
 

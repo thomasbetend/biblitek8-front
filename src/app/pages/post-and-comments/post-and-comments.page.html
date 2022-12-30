@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>post-and-comments</ion-title>
+    <ion-title>Biblitek</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['/profile']">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="['/conversations-list']">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="padding">
+    <div class="user">
+      <div class="profile">
+        <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + post?.user?.avatar + ')'}"></div>
+        <p class="text-bold">pseudo: {{ post?.user?.pseudo }}</p>
+      </div>
+    </div>
+    <div class="description">
+      {{ post?.description }}
+    </div>
+    <div class="comments" *ngFor="let comment of data">
+      <div>{{ comment.content }}</div>
+    </div>
+    <form (ngSubmit)="commentForm()">
+      <ion-input [(ngModel)]="comment" name="comment" placeholder="Ajouter un commentaire" class="custom"></ion-input>
+    </form>
+  </div>
 </ion-content>

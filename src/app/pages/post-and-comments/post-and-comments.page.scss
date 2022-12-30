@@ -1,0 +1,49 @@
+ion-title {
+    font-family: 'Pacifico';
+    font-size: 1.6rem;
+    color: var(--ion-color-color1);
+}
+
+ion-input.custom {
+    padding-left: 10px !important;
+    background-color: blueviolet;
+    border-radius: 20px;
+}
+
+.padding {
+    margin: 2.5%;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.profile p {
+    font-weight: 600;
+}
+
+.user {
+    display: flex;
+    width: 95%;
+    margin-left: 10px;
+    height: 25px;
+    margin-top: 25px;
+}
+
+.avatar1 {
+    background-color: var(--ion-color-color1);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+    background-image: "";
+}
+
+.description {
+    margin-left: 40px;
+    margin-bottom: 20px;
+}

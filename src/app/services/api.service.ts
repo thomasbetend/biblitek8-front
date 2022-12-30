@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { PostArray } from '../typings';
+import { CommentArray, Post, PostArray } from '../typings';
 import { PostModel } from '../models/post.model';
 
 
@@ -33,6 +33,10 @@ export class ApiService {
         return this.http.get<PostArray>(`${this.baseURL}/post_shares/${id}`);
     }
 
+    getPostsByPostId2(id: number) {
+        return this.http.get<Post>(`${this.baseURL}/post_shares/${id}`);
+    }
+
     deletePost(id: number) {
         return this.http.delete(`${this.baseURL}/post_shares/${id}`)
     }
@@ -45,7 +49,7 @@ export class ApiService {
     }
 
     getCommentsByPostId(id: number) {
-        return this.http.get(`${this.baseURL}/comments/id`);
+        return this.http.get<CommentArray>(`${this.baseURL}/comments?page=1&post_share=${id}`);
     }
 
 }
