@@ -17,7 +17,7 @@ export class ApiService {
     }
 
     getPostsList() {
-        return this.http.get(`${this.baseURL}/post_shares.json`)
+        return this.http.get<PostArray>(`${this.baseURL}/post_shares?page=1&order%5Bdate%5D=desc`);
     }
 
     getPostsByUserId(id: number) {

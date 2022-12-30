@@ -66,10 +66,10 @@ export class PostAndCommentsPage implements OnInit {
     this.comment.user = `/api/users/${this.user_id}`;
     this.comment.content = this.commentContent;
     this.comment.date = this.apiService.formatDate(new Date());
-    console.log('comment_posted', this.comment);
-    console.log(this.user_id);
+    // console.log('comment_posted', this.comment);
+    // console.log(this.user_id);
       this.apiService.addComment(this.comment).subscribe((comment)=>{
-      console.log(comment);
+      // console.log(comment);
     });
     this.router.navigate(["/post-and-comments", this.id]);
   }

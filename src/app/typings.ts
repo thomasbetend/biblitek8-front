@@ -6,7 +6,8 @@ export interface Post {
         id: number,
         pseudo: string,
         avatar: string,
-    }
+    },
+    date: string
 }
 
 export interface Post2 {

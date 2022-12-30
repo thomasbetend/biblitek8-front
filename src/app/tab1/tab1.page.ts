@@ -21,7 +21,8 @@ export class Tab1Page {
           id: 0,
           pseudo: "Bobby",
           avatar: "avatar01.jpeg",
-      }
+      },
+      date: "2022-12-27 19:35:51",
     },
     {
       id: 0,
@@ -31,7 +32,8 @@ export class Tab1Page {
           id: 0,
           pseudo: "Leslie",
           avatar: "avatar02.jpeg",
-      }
+      },
+      date: "2022-12-27 19:35:51"
     },
   ]
 
@@ -46,7 +48,7 @@ export class Tab1Page {
   refreshList() {
     this.apiService.getPostsList().subscribe(data => {
       console.log(data);
-      this.data = data;
+      this.data = data['hydra:member'];
   });
   }
 

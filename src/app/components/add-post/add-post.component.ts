@@ -58,6 +58,7 @@ export class AddPostComponent implements OnInit {
     this.getProfile();
 
     this.post.user = `/api/users/${this.id}`;
+    this.post.date = this.apiService.formatDate(new Date());
     
     this.apiService.addPost(this.post!).subscribe({
       next: (data)=>{
