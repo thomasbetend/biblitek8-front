@@ -39,7 +39,7 @@ export interface Profile {
 }
 
 export interface PostArray {
-    "hydra:member": [];
+    "hydra:member": [Post];
 }
 
 export interface CommentArray {

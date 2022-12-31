@@ -6,6 +6,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { Storage } from '@ionic/storage-angular';
+import { LikeModel } from 'src/app/models/like.model';
+import { Post } from 'src/app/typings';
 
 @Component({
   selector: 'app-add-post',
@@ -15,11 +17,13 @@ import { Storage } from '@ionic/storage-angular';
 export class AddPostComponent implements OnInit {
 
   post: PostModel = new PostModel();
+  lastPost?: any;
   data: any;
   isPostFailed = false;
   errorFields = false;
   token?: string;
   id?: number;
+  like: LikeModel = new LikeModel();
 
   constructor(private apiService : ApiService, private router: Router, private authService: AuthService, private http: HttpClient, private storage: Storage) { }
 
@@ -71,6 +75,18 @@ export class AddPostComponent implements OnInit {
         this.isPostFailed = true;
       } 
     });
+
+    setTimeout(()=>{
+      this.apiService.getPostsList().subscribe((data)=>{
+        this.lastPost = data['hydra:member'][0];
+        console.log('lastPost id', this.lastPost.id);
+        this.like.post = `/api/post_shares/${this.lastPost.id}`;
+        this.like.total = 0;
+        this.apiService.addLikeOnPost(this.like).subscribe((data)=>{
+          console.log(data);
+        });
+      });
+    }, 1000)
   }
 
 }

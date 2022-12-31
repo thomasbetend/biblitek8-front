@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Post } from 'src/app/typings';
 import { Storage } from '@ionic/storage-angular';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-post',
@@ -20,12 +21,20 @@ export class PostComponent implements OnInit {
   pseudo?:string;
   @Output() showComments = new EventEmitter<number>();
 
-  constructor(private authService: AuthService, private http: HttpClient, private storage: Storage) { }
+  constructor(private apiService: ApiService, private authService: AuthService, private http: HttpClient, private storage: Storage) { }
 
   ngOnInit() {
   }
 
+  getLikeByPostId() {
+    if (!this.post) return;
+    this.apiService.getLikesByPostId(this.post?.id).subscribe((data)=>{
+      console.log(data);
+    })
+  }
+
   addLike() {
+    this.getLikeByPostId();
     
     if (this.like === 0) {
       this.like++;

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { CommentArray, Post, PostArray } from '../typings';
 import { PostModel } from '../models/post.model';
 import { CommentModel } from '../models/comment.model';
+import { LikeModel } from '../models/like.model';
 
 
 @Injectable({
@@ -77,6 +78,16 @@ export class ApiService {
                 this.padTo2Digits(date.getSeconds()),
             ].join(':')
         );
+    }
+
+    getLikesByPostId(postId: number) {
+        return this.http.get(`${this.baseURL}/likes.json`);
+    }
+
+    addLikeOnPost(like: LikeModel) {
+        const headers = {'content-type': 'application/json'}  
+        console.log('body', like);
+        return this.http.post(`${this.baseURL}/likes.json`, like, {'headers': headers});
     }
 
 }

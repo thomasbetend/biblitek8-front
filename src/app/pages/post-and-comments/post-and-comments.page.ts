@@ -60,7 +60,7 @@ export class PostAndCommentsPage implements OnInit {
   }
 
   addComment() {
-    this.comment.postShare = `/api/post_shares/${this.id}`;
+    this.comment.post = `/api/post_shares/${this.id}`;
     if (!this.comment.user) return;
     if (!this.user_id) return;
     this.comment.user = `/api/users/${this.user_id}`;
