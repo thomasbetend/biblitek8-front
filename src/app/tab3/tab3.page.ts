@@ -14,7 +14,7 @@ export class Tab3Page implements OnInit {
   author?: string;
   bookName?: string;
   isBookListFull?: boolean;
-  maxBooks = 3;
+  maxBooks = 5;
 
   books: Book[] = [
     {
@@ -31,11 +31,23 @@ export class Tab3Page implements OnInit {
     },
     {
       author: 'Simone de Beauvoir',
-      name: 'Deuxième Sexe'
+      name: 'Le deuxième sexe'
     },
     {
       author: 'Colette',
       name: 'Sido'
+    },
+    {
+      author: 'Truman Capote',
+      name: 'De sang froid'
+    },
+    {
+      author: 'Jack Kerouac',
+      name: 'Sur la route'
+    },
+    {
+      author: 'Jean Giono',
+      name: 'Le chant du monde'
     }
   ]
 

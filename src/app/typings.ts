@@ -17,6 +17,12 @@ export interface Post2 {
     user: string
 }
 
+export interface Like {
+    id: number,
+    total: number,
+    postShare: string
+}
+
 export interface Book {
     author: string,
     name: string
@@ -44,6 +50,10 @@ export interface PostArray {
 
 export interface CommentArray {
     "hydra:member": [];
+}
+
+export interface LikeArray {
+    "hydra:member": [Like];
 }
 
 export interface Comment {

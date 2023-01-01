@@ -42,6 +42,7 @@ export class Tab1Page {
   }
 
   ngOnInit() {
+    console.log('refresh page tab1');
     this.refreshList();
   }
 

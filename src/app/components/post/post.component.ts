@@ -24,12 +24,14 @@ export class PostComponent implements OnInit {
   constructor(private apiService: ApiService, private authService: AuthService, private http: HttpClient, private storage: Storage) { }
 
   ngOnInit() {
+    this.getLikeByPostId();
   }
 
   getLikeByPostId() {
     if (!this.post) return;
     this.apiService.getLikesByPostId(this.post?.id).subscribe((data)=>{
-      console.log(data);
+      console.log('Likes', data);
+      this.like = data['hydra:member'][0].total;
     })
   }
 

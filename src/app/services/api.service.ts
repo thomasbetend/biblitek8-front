@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { CommentArray, Post, PostArray } from '../typings';
+import { CommentArray, Like, LikeArray, Post, PostArray } from '../typings';
 import { PostModel } from '../models/post.model';
 import { CommentModel } from '../models/comment.model';
 import { LikeModel } from '../models/like.model';
@@ -81,13 +81,17 @@ export class ApiService {
     }
 
     getLikesByPostId(postId: number) {
-        return this.http.get(`${this.baseURL}/likes.json`);
+        return this.http.get<LikeArray>(`${this.baseURL}/like_posts?page=1&postShare=${postId}`);
     }
 
-    addLikeOnPost(like: LikeModel) {
+    initializeLikeOnPost(like: LikeModel) {
         const headers = {'content-type': 'application/json'}  
         console.log('body', like);
-        return this.http.post(`${this.baseURL}/likes.json`, like, {'headers': headers});
+        return this.http.post(`${this.baseURL}/like_posts.json`, like, {'headers': headers});
+    }
+
+    addLikeOnPostByPostId(id: number, like: LikeModel) {
+        return this.http.put(`${this.baseURL}/like_posts/${id}`, like);
     }
 
 }

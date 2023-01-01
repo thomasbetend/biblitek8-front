@@ -29,7 +29,9 @@ export class PostAndCommentsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCommentsByPostId();
+    setTimeout(()=>{
+      this.getCommentsByPostId();
+    }, 500); 
     this.getPostByPostId();
 
     this.storage.get('token').then((token)=>{
@@ -60,7 +62,7 @@ export class PostAndCommentsPage implements OnInit {
   }
 
   addComment() {
-    this.comment.post = `/api/post_shares/${this.id}`;
+    this.comment.postShare = `/api/post_shares/${this.id}`;
     if (!this.comment.user) return;
     if (!this.user_id) return;
     this.comment.user = `/api/users/${this.user_id}`;
@@ -72,6 +74,7 @@ export class PostAndCommentsPage implements OnInit {
       // console.log(comment);
     });
     this.router.navigate(["/post-and-comments", this.id]);
+    // this.router.navigate(["/"]);
   }
 
 }

@@ -80,9 +80,9 @@ export class AddPostComponent implements OnInit {
       this.apiService.getPostsList().subscribe((data)=>{
         this.lastPost = data['hydra:member'][0];
         console.log('lastPost id', this.lastPost.id);
-        this.like.post = `/api/post_shares/${this.lastPost.id}`;
+        this.like.postShare = `/api/post_shares/${this.lastPost.id}`;
         this.like.total = 0;
-        this.apiService.addLikeOnPost(this.like).subscribe((data)=>{
+        this.apiService.initializeLikeOnPost(this.like).subscribe((data)=>{
           console.log(data);
         });
       });
