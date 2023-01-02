@@ -28,9 +28,14 @@
       </ion-select>
     </ion-item>
   </ion-list>
-  <ion-button *ngIf="isBookListFull" expand="block" class="btn btn-validate">Valider la biblitek</ion-button>
+  <ion-button *ngIf="isBookListFull" expand="block" (click)="validate()" class="btn btn-validate">Valider la biblitek</ion-button>
   <ion-button *ngIf="!isBookListFull" expand="block" (click)="onAddBook()" class="btn">Ajouter livre</ion-button>
   <div *ngFor="let book of bookList; let i = index">
     <app-book-item [bookName]="book" (onDelete)="onDeleteBook($event, i)"></app-book-item>
+  </div>
+  <div *ngIf="displayList">
+    <div *ngFor="let book of bookAdded">
+
+    </div>
   </div>
 </ion-content>

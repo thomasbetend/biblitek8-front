@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { idealBibliModel } from '../models/idealBibli.model';
+import { ApiService } from '../services/api.service';
 import { Book } from '../typings';
+import { Storage } from '@ionic/storage-angular';
+import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-tab3',
@@ -15,6 +20,11 @@ export class Tab3Page implements OnInit {
   bookName?: string;
   isBookListFull?: boolean;
   maxBooks = 5;
+  idealBibli: idealBibliModel = new idealBibliModel();
+  idUser?: number;
+  errorList = false;
+  displayList = false;
+  bookAdded: any;
 
   books: Book[] = [
     {
@@ -51,10 +61,18 @@ export class Tab3Page implements OnInit {
     }
   ]
 
-  constructor() {}
+  constructor(private apiService: ApiService, private storage: Storage, private authService: AuthService ) {}
 
   ngOnInit() {
     this.isBookListFull = false;
+
+    this.storage.get('token').then((token)=>{
+
+      this.authService.getProfile(token).subscribe((data)=>{
+        console.log(data);
+        this.idUser = data.id;
+      })
+    });
   }
 
   onAddBook() {
@@ -75,6 +93,32 @@ export class Tab3Page implements OnInit {
       this.isBookListFull = false;
       return;
     }
+  }
+
+  validate() {
+    this.idealBibli.book1 = this.bookList[0];
+    this.idealBibli.book2 = this.bookList[1];
+    this.idealBibli.book3 = this.bookList[2];
+    this.idealBibli.book4 = this.bookList[3];
+    this.idealBibli.book5 = this.bookList[4];
+    this.idealBibli.user = `/api/users/${this.idUser}`;
+
+    console.log(this.idealBibli);
+
+    this.apiService.addIdealBibli(this.idealBibli).subscribe({
+      next: (bibli)=>{
+        console.log('bibli', bibli);
+        this.displayList = true;
+      }, 
+      error:(err)=>{
+        console.log(err);
+        this.errorList = true;
+    } 
+    });
+
+    this.apiService.getIdealBibliByUserId(this.idUser).subscribe((data)=>{
+      this.bookAdded = data;
+    })
   }
 
 }

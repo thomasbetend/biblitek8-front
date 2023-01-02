@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EnvironmentInjector, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentModel } from 'src/app/models/comment.model';
 import { ApiService } from 'src/app/services/api.service';
 import { Post, Post2 } from 'src/app/typings';
 import { Storage } from '@ionic/storage-angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-post-and-comments',
@@ -20,7 +21,7 @@ export class PostAndCommentsPage implements OnInit {
   post2?: Post2;
   comment: CommentModel = new CommentModel();
   commentContent?: string;
-  imageUrl = "../../assets/images/";
+  imageUrl = environment.imageUrl;
   token?: string;
 
 
@@ -62,19 +63,15 @@ export class PostAndCommentsPage implements OnInit {
   }
 
   addComment() {
-    this.comment.postShare = `/api/post_shares/${this.id}`;
-    if (!this.comment.user) return;
+    if (!this.post1) return;
+    this.comment.postShare = `/api/post_shares/${this.post1.id}`;
     if (!this.user_id) return;
     this.comment.user = `/api/users/${this.user_id}`;
     this.comment.content = this.commentContent;
     this.comment.date = this.apiService.formatDate(new Date());
-    // console.log('comment_posted', this.comment);
-    // console.log(this.user_id);
       this.apiService.addComment(this.comment).subscribe((comment)=>{
-      // console.log(comment);
     });
     this.router.navigate(["/post-and-comments", this.id]);
-    // this.router.navigate(["/"]);
   }
 
 }

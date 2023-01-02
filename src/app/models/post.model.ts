@@ -1,6 +1,7 @@
 export class PostModel {
-    description? : string;
-    image? : string;
+    id?: number;
+    image?: string;
+    description?: string;
     user?: string;
     date?: string;
 }

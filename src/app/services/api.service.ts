@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { CommentArray, Like, LikeArray, Post, PostArray } from '../typings';
+import { CommentArray, IdealBibliArray, Like, LikeArray, Post, PostArray } from '../typings';
 import { PostModel } from '../models/post.model';
 import { CommentModel } from '../models/comment.model';
 import { LikeModel } from '../models/like.model';
+import { idealBibliModel } from '../models/idealBibli.model';
+import { environment } from 'src/environments/environment';
+import { UserModel2 } from '../models/user.model';
 
 
 @Injectable({
@@ -11,7 +14,7 @@ import { LikeModel } from '../models/like.model';
 })
 export class ApiService {
 
-    baseURL: string = "http://localhost:8000/api";
+    baseURL: string = environment.apiUrl;
     token? = localStorage.getItem('token');
 
     constructor(private http: HttpClient) { 
@@ -26,9 +29,7 @@ export class ApiService {
         if (id) {
             httpParams = httpParams.set('id', id);
         }
-        //return this.http.get(`${this.baseURL}/post_shares`, {params: httpParams})
         return this.http.get<PostArray>(`${this.baseURL}/post_shares?page=1&user=${id}`);
-        //http://localhost:8000/api/post_shares?page=1&user=1
     }
 
     getPostsByPostId(id: number) {
@@ -90,8 +91,24 @@ export class ApiService {
         return this.http.post(`${this.baseURL}/like_posts.json`, like, {'headers': headers});
     }
 
-    addLikeOnPostByPostId(id: number, like: LikeModel) {
+    upDateLikeOnPostByPostId(id: number, like: LikeModel) {
         return this.http.put(`${this.baseURL}/like_posts/${id}`, like);
+    }
+
+    addUser(user: UserModel2) {
+        const headers = {'content-type': 'application/json'}  
+        console.log('body', user);
+        return this.http.post(`${this.baseURL}/users.json`, user, {'headers': headers});
+    }
+
+    getIdealBibliByUserId(userId: number) {
+        return this.http.get<IdealBibliArray>(`${this.baseURL}/ideal_bibliotheques?page=1&user=${userId}`)
+    }
+
+    addIdealBibli(idealBibli: idealBibliModel) {
+        const headers = {'content-type': 'application/json'}  
+        console.log('body', idealBibli);
+        return this.http.post(`${this.baseURL}/ideal_bibliotheques.json`, idealBibli, {'headers': headers});
     }
 
 }

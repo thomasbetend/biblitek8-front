@@ -11,25 +11,17 @@
       Biblitek
     </div>
     <ion-item lines="full">
-      <ion-label color="primary">Prénom</ion-label>
-      <ion-input color="primary" type="text" placeholder=""></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label color="primary">Nom</ion-label>
-      <ion-input color="primary" type="text" placeholder=""></ion-input>
-    </ion-item>
-    <ion-item lines="full">
       <ion-label color="primary">Pseudo</ion-label>
-      <ion-input color="primary" type="text" placeholder=""></ion-input>
+      <ion-input color="primary" type="text" placeholder="" [(ngModel)]="user.pseudo"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label color="primary">Email</ion-label>
-      <ion-input color="primary" type="mail" placeholder=""></ion-input>
+      <ion-input color="primary" type="mail" placeholder="" [(ngModel)]="user.email"></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label color="primary">Password</ion-label>
-      <ion-input color="primary" type="password" placeholder=""></ion-input>
+      <ion-label color="primary">Mot de passe</ion-label>
+      <ion-input color="primary" type="password" placeholder="" [(ngModel)]="user.password"></ion-input>
     </ion-item>
-    <ion-button color="danger" expand="block" class="connexion" [routerLink]="['/']">Inscription</ion-button>
+    <ion-button type="submit" color="danger" expand="block" class="connexion" (click)="addNewUser()">Inscription</ion-button>
   </div>
 </ion-content>

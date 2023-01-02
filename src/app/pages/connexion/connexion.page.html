@@ -15,11 +15,11 @@
       <ion-input color="primary" type="mail" placeholder="" [(ngModel)]="user.email"></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label color="primary">Password</ion-label>
+      <ion-label color="primary">Mot de passe</ion-label>
       <ion-input color="primary" type="password" placeholder="" [(ngModel)]="user.password"></ion-input>
     </ion-item>
     <div *ngIf="errorField" class="error">Remplissez tous les champs</div>
-    <div *ngIf="errorConnexion" class="error">Vos identifiants sont faux</div>
+    <div *ngIf="errorConnexion" class="error">Vos identifiants sont erronés</div>
     <ion-button color="primary" expand="block" class="connexion" type="submit" (click)="submitUser()">Connexion</ion-button>
   </div>
 </ion-content>

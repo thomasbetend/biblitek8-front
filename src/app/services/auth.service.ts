@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { StorageService } from './storage.service';
 
 import { Storage } from '@ionic/storage-angular';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -14,13 +15,14 @@ import { Storage } from '@ionic/storage-angular';
 export class AuthService {
   
   token = this.storageService.get('token');
-  baseURL2: string = "http://localhost:8000";
+  authUrl = environment.authUrl;
+  apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient, private storageService: StorageService, private storage: Storage) { }
 
   login(user: UserModel) {
     const headers = {'content-type': 'application/json'};
-    return this.http.post<Token>(`${this.baseURL2}/auth`, user, {'headers': headers});
+    return this.http.post<Token>(`${this.authUrl}`, user, {'headers': headers});
 }
 
   logout() {
@@ -52,7 +54,7 @@ export class AuthService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.get<Profile>(`${this.baseURL2}/api/me`, { 'headers' : headers});
+    return this.http.get<Profile>(`${this.apiUrl}/me`, { 'headers' : headers});
   }
 
 }

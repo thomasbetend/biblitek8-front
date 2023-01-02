@@ -49,7 +49,7 @@ export interface PostArray {
 }
 
 export interface CommentArray {
-    "hydra:member": [];
+    "hydra:member": [Comment2];
 }
 
 export interface LikeArray {
@@ -57,8 +57,35 @@ export interface LikeArray {
 }
 
 export interface Comment {
-    content: "Je l'ai lu et je confirme",
-    date: "2022-12-29T18:20:34.978Z",
-    user: "/api/users/2",
-    postShare: "/api/post_shares/19"
+    content: string,
+    date: string,
+    user: string,
+    postShare: string
+}
+
+export interface Comment2 {
+    content: string,
+    date: string,
+    user: {
+        id: number,
+        pseudo: string,
+        avatar: string
+    },
+    post_share?: {
+        id: number
+    }
+}
+
+export interface idealBibli {
+    id?: number,
+    book1: string,
+    book2: string,
+    book3: string,
+    book4: string,
+    book5: string,
+    user: string,
+}
+
+export interface IdealBibliArray {
+    "hydra:member": [];
 }

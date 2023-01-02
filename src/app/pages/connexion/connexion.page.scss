@@ -19,6 +19,7 @@ ion-content {
 ion-item {
     --ion-background-color: transparent!important;
     margin-right: 0%;
+    font-size: 0.8rem;
 }
 
 .connexion {
@@ -46,4 +47,8 @@ ion-button {
     margin-left: 7%;
     margin-top: 10px;
     margin-bottom: 5px;
+}
+
+ion-input::placeholder {
+    color: white;
 }
