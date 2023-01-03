@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Biblitek</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['/profile']">
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        <!-- <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + avatar + ')'}"></div> -->
+      </ion-button>
+      <ion-button [routerLink]="['/conversations-list']">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="idealBibliotek">
+    <ion-item lines="full">
+      <ion-label color="primary">Livre 1</ion-label>
+      <ion-input color="primary" type="text" placeholder="" [(ngModel)]="idealBibli.book1"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label color="primary">Livre 2</ion-label>
+      <ion-input color="primary" type="text" placeholder="" [(ngModel)]="idealBibli.book2"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label color="primary">Livre 3</ion-label>
+      <ion-input color="primary" type="text" placeholder="" [(ngModel)]="idealBibli.book3"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label color="primary">Livre 4</ion-label>
+      <ion-input color="primary" type="text" placeholder="" [(ngModel)]="idealBibli.book4"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label color="primary">Livre 5</ion-label>
+      <ion-input color="primary" type="text" placeholder="" [(ngModel)]="idealBibli.book5"></ion-input>
+    </ion-item>
+    <ion-button fill="outline" type="submit" (click)="onModifyBibli()">Modifier</ion-button>
+  </div>
+
+</ion-content>

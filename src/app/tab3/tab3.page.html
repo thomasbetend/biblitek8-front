@@ -18,24 +18,39 @@
 <ion-content [fullscreen]="true">
   <h1>La Bibliothèque idéale</h1>
   <!-- <ion-searchbar search-icon="search-circle" placeholder="Custom Search Icon"></ion-searchbar> -->
-  <h6>
-    Sélectionnez les 5 meilleurs livres du monde
-  </h6>
-  <ion-list>
-    <ion-item>
-      <ion-select interface="popover" placeholder="Sélectionner" [(ngModel)]="bookChoice">
-        <ion-select-option *ngFor="let book of books" [value]="book.name + ' - ' +  book.author">{{ book.name }} - {{ book.author }}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-  <ion-button *ngIf="isBookListFull" expand="block" (click)="validate()" class="btn btn-validate">Valider la biblitek</ion-button>
-  <ion-button *ngIf="!isBookListFull" expand="block" (click)="onAddBook()" class="btn">Ajouter livre</ion-button>
-  <div *ngFor="let book of bookList; let i = index">
-    <app-book-item [bookName]="book" (onDelete)="onDeleteBook($event, i)"></app-book-item>
-  </div>
-  <div *ngIf="displayList">
-    <div *ngFor="let book of bookAdded">
-
+  <div *ngIf="!displayList">
+    <h6>
+      Sélectionnez les 5 meilleurs livres du monde
+    </h6>
+    <ion-list>
+      <ion-item>
+        <ion-select interface="popover" placeholder="Sélectionner" [(ngModel)]="bookChoice">
+          <ion-select-option *ngFor="let book of books" [value]="book.name + ' - ' +  book.author">{{ book.name }} - {{ book.author }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button *ngIf="isBookListFull" expand="block" (click)="validate()" class="btn btn-validate">Valider la biblitek</ion-button>
+    <ion-button *ngIf="!isBookListFull" expand="block" (click)="onAddBook()" class="btn">Ajouter livre</ion-button>
+    <div *ngFor="let book of bookList; let i = index">
+      <app-book-item [bookName]="book" (onDelete)="onDeleteBook($event, i)"></app-book-item>
     </div>
+  </div>
+  <div *ngIf="displayList" class="idealBibliotek">
+    <div class="idealBibliotekItem">
+      <p>{{ idealBibliUser.book1 }}</p>
+    </div> 
+    <div class="idealBibliotekItem">
+      <p>{{ idealBibliUser.book2 }}</p>
+    </div> 
+    <div class="idealBibliotekItem">
+      <p>{{ idealBibliUser.book3 }}</p>
+    </div>     
+    <div class="idealBibliotekItem">
+      <p>{{ idealBibliUser.book4 }}</p>
+    </div>     
+    <div class="idealBibliotekItem">
+      <p>{{ idealBibliUser.book5 }}</p>
+    </div> 
+    <ion-button fill="outline" (click)="onModifyBibli()" class="btn">Modilier bibliothèque</ion-button>
   </div>
 </ion-content>

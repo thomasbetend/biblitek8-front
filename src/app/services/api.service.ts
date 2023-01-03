@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { CommentArray, IdealBibliArray, Like, LikeArray, Post, PostArray } from '../typings';
+import { CommentArray, idealBibli, IdealBibliArray, Like, LikeArray, Post, PostArray } from '../typings';
 import { PostModel } from '../models/post.model';
 import { CommentModel } from '../models/comment.model';
 import { LikeModel } from '../models/like.model';
@@ -111,4 +111,7 @@ export class ApiService {
         return this.http.post(`${this.baseURL}/ideal_bibliotheques.json`, idealBibli, {'headers': headers});
     }
 
+    modifyBibli(idBibli: number, bibli: idealBibliModel) {
+        return this.http.put(`${this.baseURL}/ideal_bibliotheques/${idBibli}`, bibli);
+    }
 }

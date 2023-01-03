@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'post-and-comments/:id',
     loadChildren: () => import('./pages/post-and-comments/post-and-comments.module').then( m => m.PostAndCommentsPageModule)
+  },
+  {
+    path: 'modify-bibliotheque',
+    loadChildren: () => import('./pages/modify-bibliotheque/modify-bibliotheque.module').then( m => m.ModifyBibliothequePageModule)
   }
 ];
 @NgModule({

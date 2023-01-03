@@ -4,6 +4,7 @@ import { ApiService } from '../services/api.service';
 import { Book } from '../typings';
 import { Storage } from '@ionic/storage-angular';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,11 +21,13 @@ export class Tab3Page implements OnInit {
   bookName?: string;
   isBookListFull?: boolean;
   maxBooks = 5;
-  idealBibli: idealBibliModel = new idealBibliModel();
+  idealBibliPosted: idealBibliModel = new idealBibliModel();
+  idealBibliUser: idealBibliModel = new idealBibliModel();
   idUser?: number;
   errorList = false;
-  displayList = false;
+  displayList = true;
   bookAdded: any;
+  book1? : string;
 
   books: Book[] = [
     {
@@ -61,7 +64,7 @@ export class Tab3Page implements OnInit {
     }
   ]
 
-  constructor(private apiService: ApiService, private storage: Storage, private authService: AuthService ) {}
+  constructor(private router: Router, private apiService: ApiService, private storage: Storage, private authService: AuthService ) {}
 
   ngOnInit() {
     this.isBookListFull = false;
@@ -73,6 +76,13 @@ export class Tab3Page implements OnInit {
         this.idUser = data.id;
       })
     });
+
+    setTimeout(()=>{
+      console.log("user", this.idUser);
+      this.getIdealBibli();
+      this.idealBibliUser ? this.displayList = true : this.displayList = false;
+    },500);
+
   }
 
   onAddBook() {
@@ -96,29 +106,36 @@ export class Tab3Page implements OnInit {
   }
 
   validate() {
-    this.idealBibli.book1 = this.bookList[0];
-    this.idealBibli.book2 = this.bookList[1];
-    this.idealBibli.book3 = this.bookList[2];
-    this.idealBibli.book4 = this.bookList[3];
-    this.idealBibli.book5 = this.bookList[4];
-    this.idealBibli.user = `/api/users/${this.idUser}`;
+    this.idealBibliPosted.book1 = this.bookList[0];
+    this.idealBibliPosted.book2 = this.bookList[1];
+    this.idealBibliPosted.book3 = this.bookList[2];
+    this.idealBibliPosted.book4 = this.bookList[3];
+    this.idealBibliPosted.book5 = this.bookList[4];
+    this.idealBibliPosted.user = `/api/users/${this.idUser}`;
 
-    console.log(this.idealBibli);
+    console.log(this.idealBibliPosted);
 
-    this.apiService.addIdealBibli(this.idealBibli).subscribe({
+    this.apiService.addIdealBibli(this.idealBibliPosted).subscribe({
       next: (bibli)=>{
         console.log('bibli', bibli);
-        this.displayList = true;
       }, 
       error:(err)=>{
         console.log(err);
         this.errorList = true;
     } 
     });
+  }
 
+  getIdealBibli() {
+    if(!this.idUser) return;
     this.apiService.getIdealBibliByUserId(this.idUser).subscribe((data)=>{
       this.bookAdded = data;
-    })
+      this.idealBibliUser = this.bookAdded["hydra:member"][0];
+    });
+  }
+
+  onModifyBibli() {
+    this.router.navigate(['/modify-bibliotheque'])
   }
 
 }
