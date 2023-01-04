@@ -29,7 +29,7 @@ export class ApiService {
         if (id) {
             httpParams = httpParams.set('id', id);
         }
-        return this.http.get<PostArray>(`${this.baseURL}/post_shares?page=1&user=${id}`);
+        return this.http.get<PostArray>(`${this.baseURL}/post_shares?page=1&user=${id}&order%5Bdate%5D=desc`);
     }
 
     getPostsByPostId(id: number) {

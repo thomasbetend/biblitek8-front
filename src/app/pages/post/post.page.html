@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Biblitek</ion-title>
+    <ion-title routerLink="/">Biblitek</ion-title>
     <ion-buttons slot="primary">
       <ion-button [routerLink]="['/profile']">
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
@@ -36,6 +36,7 @@
         </div>
     </div>  
   </div>
-  <ion-button color="primary" expand="block" (click)="onDeletePost()">Supprimer ce post</ion-button>
-
+  <div class="button">
+    <ion-button color="primary" fill="outline" (click)="onDeletePost()">Supprimer ce post</ion-button>
+  </div>
 </ion-content>

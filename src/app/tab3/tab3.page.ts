@@ -5,6 +5,7 @@ import { Book } from '../typings';
 import { Storage } from '@ionic/storage-angular';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { concatMap } from 'rxjs';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class Tab3Page implements OnInit {
   idealBibliUser: idealBibliModel = new idealBibliModel();
   idUser?: number;
   errorList = false;
-  displayList = true;
+  displayList = false;
   bookAdded: any;
   book1? : string;
 
@@ -67,20 +68,25 @@ export class Tab3Page implements OnInit {
   constructor(private router: Router, private apiService: ApiService, private storage: Storage, private authService: AuthService ) {}
 
   ngOnInit() {
+
+    console.log('refresh page tab3');
     this.isBookListFull = false;
 
     this.storage.get('token').then((token)=>{
 
       this.authService.getProfile(token).subscribe((data)=>{
-        console.log(data);
         this.idUser = data.id;
       })
     });
 
     setTimeout(()=>{
       console.log("user", this.idUser);
-      this.getIdealBibli();
-      this.idealBibliUser ? this.displayList = true : this.displayList = false;
+      if (!this.idUser) return;
+      this.apiService.getIdealBibliByUserId(this.idUser).subscribe((data)=>{
+        this.bookAdded = data;
+        this.idealBibliUser = this.bookAdded["hydra:member"][0];
+        this.idealBibliUser.book1 ? this.displayList = true : this.displayList = false;
+      });
     },500);
 
   }

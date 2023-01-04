@@ -1,7 +1,14 @@
 ion-title {
     font-family: 'Pacifico';
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: var(--ion-color-color1);
+}
+
+ion-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 .cards {
@@ -140,5 +147,11 @@ ion-title {
 
 .comment {
     display: flex;
+    align-items: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
