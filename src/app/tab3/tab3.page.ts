@@ -80,7 +80,6 @@ export class Tab3Page implements OnInit {
     });
 
     setTimeout(()=>{
-      console.log("user", this.idUser);
       if (!this.idUser) return;
       this.apiService.getIdealBibliByUserId(this.idUser).subscribe((data)=>{
         this.bookAdded = data;
