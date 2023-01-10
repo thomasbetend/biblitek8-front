@@ -14,10 +14,10 @@ import { environment } from 'src/environments/environment';
 })
 export class PostAndCommentsPage implements OnInit {
 
-  id?: number;
-  user_id?: any;
+  postId?: number;
+  userId?: any;
   data: any;
-  post1?: Post;
+  postGetted?: Post;
   post2?: Post2;
   comment: CommentModel = new CommentModel();
   commentContent?: string;
@@ -26,52 +26,47 @@ export class PostAndCommentsPage implements OnInit {
 
 
   constructor(public authService: AuthService, private storage: Storage, private router: Router, private activatedRoute: ActivatedRoute, private apiService: ApiService) { 
-    this.id = this.activatedRoute.snapshot.params['id'];
+    this.postId = this.activatedRoute.snapshot.params['id'];
   }
 
-  ngOnInit() {
-    setTimeout(()=>{
-      this.getCommentsByPostId();
-    }, 500); 
-    this.getPostByPostId();
+  ngOnInit() { 
+    this.getCommentsByPostId();
 
     this.storage.get('token').then((token)=>{
       this.token = token;
 
       this.authService.getProfile(token).subscribe((data)=>{
         console.log('user_id', data);
-        this.user_id = data.id;
+        this.userId = data.id;
       })
     });
   }
 
   getCommentsByPostId() {
-    console.log('id comments', this.id);
-    if (!this.id) return;
-    this.apiService.getCommentsByPostId(this.id).subscribe((data)=>{
-      this.data = data["hydra:member"];
-      console.log('comments', this.data);
-    })
-  }
+    if (!this.postId) return;
+    this.apiService.getPostsByPostId2(this.postId).subscribe((post)=>{
+      this.postGetted = post;
+      console.log(this.postGetted);
 
-  getPostByPostId() {
-    if (!this.id) return;
-    this.apiService.getPostsByPostId2(this.id).subscribe((post)=>{
-      this.post1 = post;
-      console.log(this.post1);
-    })
+      if (!this.postId) return;
+      this.apiService.getCommentsByPostId(this.postId).subscribe((data)=>{
+        this.data = data["hydra:member"];
+        console.log('comments', this.data);
+      });
+    });
   }
 
   addComment() {
-    if (!this.post1) return;
-    this.comment.postShare = `/api/post_shares/${this.post1.id}`;
-    if (!this.user_id) return;
-    this.comment.user = `/api/users/${this.user_id}`;
+    if (!this.postGetted) return;
+    this.comment.postShare = `/api/post_shares/${this.postGetted.id}`;
+    if (!this.userId) return;
+    this.comment.user = `/api/users/${this.userId}`;
     this.comment.content = this.commentContent;
     this.comment.date = this.apiService.formatDate(new Date());
       this.apiService.addComment(this.comment).subscribe((comment)=>{
     });
-    this.router.navigate(["/post-and-comments", this.id]);
+    this.commentContent ='';
+    this.getCommentsByPostId();
   }
 
 }

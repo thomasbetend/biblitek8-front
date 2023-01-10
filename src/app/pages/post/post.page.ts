@@ -38,6 +38,7 @@ export class PostPage implements OnInit {
     if (!this.id) return;
     this.apiService.deletePost(this.id).subscribe((data)=>{
       console.log(data);
-    })
+    });
+    this.router.navigate(['/']);
   }
 }

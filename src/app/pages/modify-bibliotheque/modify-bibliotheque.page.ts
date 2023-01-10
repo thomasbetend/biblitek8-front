@@ -16,7 +16,7 @@ export class ModifyBibliothequePage implements OnInit {
   token?: string;
   pseudo?: string;
   avatar?: string;
-  id?: number;
+  userId?: number;
   data?: any;
 
   constructor(private router: Router, private authService: AuthService, private apiService: ApiService, private storage: Storage) { 
@@ -27,19 +27,17 @@ export class ModifyBibliothequePage implements OnInit {
       this.token = token;
 
       this.authService.getProfile(token).subscribe((data)=>{
-        this.id = data.id;
-        console.log(this.id);
+        this.userId = data.id;
+        console.log(this.userId);
+
+        if (!this.userId) return;
+        this.apiService.getIdealBibliByUserId(this.userId).subscribe((data)=>{
+          this.data = data["hydra:member"];
+          console.log(this.data[0]);
+          this.idealBibli = this.data[0];
+      });
       })
     });
-
-    setTimeout(()=>{
-      if (!this.id) return;
-      this.apiService.getIdealBibliByUserId(this.id).subscribe((data)=>{
-        this.data = data["hydra:member"];
-        console.log(this.data[0]);
-        this.idealBibli = this.data[0];
-      });
-    }, 500);
   }
 
   onModifyBibli() {
@@ -49,10 +47,6 @@ export class ModifyBibliothequePage implements OnInit {
       }
     );
     this.router.navigate(['/modify-bibliotheque']); 
-  }
-
-  async getToken(key:string): Promise<void>{
-    return await this.storage.get(key);
   }
 
   

@@ -35,21 +35,17 @@ export class AddPostComponent implements OnInit {
     this.post.image = '';
   }
 
-  getToken() {
+  getProfile() {
     this.storage.get('token').then((val)=>{
       this.token = val;
-    })
-  }
-
-  getProfile() {
-    this.getToken();
-    setTimeout(()=>{
       if(!this.token) return;
       this.authService.getProfile(this.token).subscribe((data)=>{
-        console.log(data);
         this.id = data.id;
+
+        console.log('id>>>', this.id);
+
       });
-    }, 1000)
+    })
   }
 
   addPost() {
@@ -67,6 +63,17 @@ export class AddPostComponent implements OnInit {
     this.apiService.addPost(this.post!).subscribe({
       next: (data)=>{
         console.log(data);
+
+        this.apiService.getPostsList().subscribe((data)=>{
+          this.lastPost = data['hydra:member'][0];
+          console.log('lastPost id', this.lastPost.id);
+          this.like.postShare = `/api/post_shares/${this.lastPost.id}`;
+          this.like.total = 0;
+          this.apiService.initializeLikeOnPost(this.like).subscribe((data)=>{
+            console.log(data);
+          });
+        });
+
         this.router.navigate(['/']);
         this.isPostFailed = false;
       }, 
@@ -76,7 +83,10 @@ export class AddPostComponent implements OnInit {
       } 
     });
 
-    setTimeout(()=>{
+    this.post.image = '';
+    this.post.description = '';
+
+    /* setTimeout(()=>{
       this.apiService.getPostsList().subscribe((data)=>{
         this.lastPost = data['hydra:member'][0];
         console.log('lastPost id', this.lastPost.id);
@@ -86,7 +96,7 @@ export class AddPostComponent implements OnInit {
           console.log(data);
         });
       });
-    }, 1000)
+    }, 1000) */
   }
 
 }

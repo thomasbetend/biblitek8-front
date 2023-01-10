@@ -19,12 +19,12 @@
   <div class="padding">
     <div class="user">
       <div class="profile">
-        <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + post1?.user?.avatar}"></div> <!-- put avatar instead -->
-        <p class="text-bold">{{ post1?.user?.pseudo }}</p>
+        <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + postGetted?.user?.avatar}"></div> <!-- put avatar instead -->
+        <p class="text-bold">{{ postGetted?.user?.pseudo }}</p>
       </div>
     </div>
     <div class="description">
-      {{ post1?.description }}
+      {{ postGetted?.description }}
     </div>
     <div class="comments" *ngFor="let comment of data">
       <div class="user">

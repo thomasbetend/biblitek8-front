@@ -24,70 +24,48 @@ export class Tab3Page implements OnInit {
   maxBooks = 5;
   idealBibliPosted: idealBibliModel = new idealBibliModel();
   idealBibliUser: idealBibliModel = new idealBibliModel();
-  idUser?: number;
+  userId?: number;
   errorList = false;
   displayList = false;
+  displayForm = true;
   bookAdded: any;
   book1? : string;
-
-  books: Book[] = [
-    {
-      author: 'Fiodor Dostoïevski',
-      name: 'Les Frères Karamazov'
-    },
-    {
-      author: 'Albert Cohen',
-      name: 'Belle du Seigneur'
-    },
-    {
-      author: 'Victor Hugo',
-      name: 'Les Misérables'
-    },
-    {
-      author: 'Simone de Beauvoir',
-      name: 'Le deuxième sexe'
-    },
-    {
-      author: 'Colette',
-      name: 'Sido'
-    },
-    {
-      author: 'Truman Capote',
-      name: 'De sang froid'
-    },
-    {
-      author: 'Jack Kerouac',
-      name: 'Sur la route'
-    },
-    {
-      author: 'Jean Giono',
-      name: 'Le chant du monde'
-    }
-  ]
+  books?: Book[]; 
 
   constructor(private router: Router, private apiService: ApiService, private storage: Storage, private authService: AuthService ) {}
 
   ngOnInit() {
 
-    console.log('refresh page tab3');
     this.isBookListFull = false;
+    this.displayForm = false;
+
+    this.apiService.getBookTotalList().subscribe((data)=>{
+      this.books = data;
+      console.log('this.books', data);
+    })
 
     this.storage.get('token').then((token)=>{
 
       this.authService.getProfile(token).subscribe((data)=>{
-        this.idUser = data.id;
+        this.userId = data.id;
+
+        if (!this.userId) return;
+        this.apiService.getIdealBibliByUserId(this.userId).subscribe({
+          next: (data)=>{
+          this.bookAdded = data;
+
+          this.idealBibliUser = this.bookAdded["hydra:member"][0];
+            this.displayList = true;
+            this.displayForm = false;
+          },
+          error: (err)=>{
+            this.displayList = false;
+            this.displayForm = true;
+            console.log('err', err);
+          }
+        });
       })
     });
-
-    setTimeout(()=>{
-      if (!this.idUser) return;
-      this.apiService.getIdealBibliByUserId(this.idUser).subscribe((data)=>{
-        this.bookAdded = data;
-        this.idealBibliUser = this.bookAdded["hydra:member"][0];
-        this.idealBibliUser.book1 ? this.displayList = true : this.displayList = false;
-      });
-    },500);
-
   }
 
   onAddBook() {
@@ -116,7 +94,7 @@ export class Tab3Page implements OnInit {
     this.idealBibliPosted.book3 = this.bookList[2];
     this.idealBibliPosted.book4 = this.bookList[3];
     this.idealBibliPosted.book5 = this.bookList[4];
-    this.idealBibliPosted.user = `/api/users/${this.idUser}`;
+    this.idealBibliPosted.user = `/api/users/${this.userId}`;
 
     console.log(this.idealBibliPosted);
 
@@ -132,8 +110,8 @@ export class Tab3Page implements OnInit {
   }
 
   getIdealBibli() {
-    if(!this.idUser) return;
-    this.apiService.getIdealBibliByUserId(this.idUser).subscribe((data)=>{
+    if(!this.userId) return;
+    this.apiService.getIdealBibliByUserId(this.userId).subscribe((data)=>{
       this.bookAdded = data;
       this.idealBibliUser = this.bookAdded["hydra:member"][0];
     });

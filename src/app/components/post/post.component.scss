@@ -112,7 +112,11 @@
 }
 
 .text-description {
-    font-size: 0.9rem;
+    display: block;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 32px;
 }
 
 .reactions {
@@ -137,3 +141,4 @@
     display: flex;
     align-items: center;
 }
+

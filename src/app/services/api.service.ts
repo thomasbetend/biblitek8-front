@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { CommentArray, idealBibli, IdealBibliArray, Like, LikeArray, Post, PostArray } from '../typings';
+import { Book, CommentArray, idealBibli, IdealBibliArray, Like, LikeArray, Post, PostArray } from '../typings';
 import { PostModel } from '../models/post.model';
 import { CommentModel } from '../models/comment.model';
 import { LikeModel } from '../models/like.model';
@@ -18,6 +18,10 @@ export class ApiService {
     token? = localStorage.getItem('token');
 
     constructor(private http: HttpClient) { 
+    }
+
+    getBookTotalList() {
+        return this.http.get<Book[]>(`${this.baseURL}/books.json`);
     }
 
     getPostsList() {
