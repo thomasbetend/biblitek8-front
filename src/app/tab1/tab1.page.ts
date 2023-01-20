@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Post } from '../typings';
+import { Storage } from '@ionic/storage-angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab1',
@@ -10,6 +12,8 @@ import { Post } from '../typings';
 })
 export class Tab1Page {
 
+  userId?: number;
+  token?: string;
   data: any;
   imageUrl?: string;
   posts: Post[] = [
@@ -37,13 +41,21 @@ export class Tab1Page {
     },
   ]
 
-  constructor(private apiService: ApiService, private router: Router) {
+  constructor(private authService: AuthService, private storage: Storage, private apiService: ApiService, private router: Router) {
     this.refreshList();
   }
 
   ngOnInit() {
     console.log('refresh page tab1');
     this.refreshList();
+
+    this.storage.get('token').then((token)=>{
+      this.token = token;
+
+      this.authService.getProfile(token).subscribe((data)=>{
+        this.userId = data.id;
+      });
+    });
   }
 
   refreshList() {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Book, CommentArray, idealBibli, IdealBibliArray, Like, LikeArray, Post, PostArray } from '../typings';
+import { Book, CommentArray, conversationArray, idealBibli, IdealBibliArray, Like, Like2, LikeArray, Post, Post3, PostArray } from '../typings';
 import { PostModel } from '../models/post.model';
 import { CommentModel } from '../models/comment.model';
 import { LikeModel } from '../models/like.model';
@@ -52,7 +52,7 @@ export class ApiService {
         const headers = {'content-type': 'application/json'}  
         const body=JSON.stringify(post);
         console.log('body', body);
-        return this.http.post(`${this.baseURL}/post_shares.json`, body, {'headers': headers});
+        return this.http.post(`${this.baseURL}/post_shares`, body, {'headers': headers});
     }
 
     getCommentsByPostId(id: number) {
@@ -89,10 +89,15 @@ export class ApiService {
         return this.http.get<LikeArray>(`${this.baseURL}/like_posts?page=1&postShare=${postId}`);
     }
 
+    getLikeIdByUserAndPost(postId: number, userId: number) {
+        return this.http.get<LikeArray>(`${this.baseURL}/like_posts?page=1&postShare=${postId}&user=${userId}`);
+    }
+
     initializeLikeOnPost(like: LikeModel) {
-        const headers = {'content-type': 'application/json'}  
+        const headers = {'content-type': 'application/json'};
+        const body=JSON.stringify(like);  
         console.log('body', like);
-        return this.http.post(`${this.baseURL}/like_posts.json`, like, {'headers': headers});
+        return this.http.post(`${this.baseURL}/like_posts`, like, {'headers': headers});
     }
 
     upDateLikeOnPostByPostId(id: number, like: LikeModel) {
@@ -117,5 +122,9 @@ export class ApiService {
 
     modifyBibli(idBibli: number, bibli: idealBibliModel) {
         return this.http.put(`${this.baseURL}/ideal_bibliotheques/${idBibli}`, bibli);
+    }
+
+    getConversationsByIdUser(userId: number) {
+        return this.http.get<conversationArray>(`${this.baseURL}/conversations?page=1&user=${userId}`);
     }
 }

@@ -1,7 +1,9 @@
 export class PostModel {
-    id?: number;
-    image?: string;
-    description?: string;
-    user?: string;
-    date?: string;
+    id: number | undefined;
+    image: string | undefined;
+    description: string | undefined;
+    user?: {
+        id: number | undefined;
+    };
+    date: string | undefined;
 }

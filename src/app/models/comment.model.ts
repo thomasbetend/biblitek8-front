@@ -1,7 +1,11 @@
 export class CommentModel {
     content?: string;
     date?: string;
-    user?: string;
-    postShare?: string;
+    user?: {
+        id: number | undefined;
+    };
+    postShare?: {
+        id: number | undefined;
+    };
 }
 

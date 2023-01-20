@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'src/app/typings';
+import { Conversation, User } from 'src/app/typings';
 
 @Component({
   selector: 'app-conversation-item',
@@ -11,6 +11,7 @@ export class ConversationItemComponent implements OnInit {
   @Input() firstname?: string;
   @Input() lastname?: string;
   @Input() user?: User;
+  @Input() conversation?: User;
 
 
   constructor() { }

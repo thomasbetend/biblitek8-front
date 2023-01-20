@@ -17,6 +17,16 @@ export interface Post2 {
     user: string
 }
 
+export interface Post3 {
+    id: number,
+    image: string | undefined,
+    description: string | undefined,
+    user: {
+        id: number | undefined,
+    },
+    date: string
+}
+
 export interface Like {
     id: number,
     total: number,
@@ -29,31 +39,33 @@ export interface Book {
 }
 
 export interface User {
+    id: number,
     firstname: string,
-    lastname: string
+    lastname: string,
+    pseudo: string
 }
 
 export interface Token {
-    token: string;
+    token: string,
 }
 
 export interface Profile {
-    avatar: string;
-    email: string;
-    pseudo: string;
-    id: number;
+    avatar: string,
+    email: string,
+    pseudo: string,
+    id: number,
 }
 
 export interface PostArray {
-    "hydra:member": [Post];
+    "hydra:member": [Post],
 }
 
 export interface CommentArray {
-    "hydra:member": [Comment2];
+    "hydra:member": [Comment2],
 }
 
 export interface LikeArray {
-    "hydra:member": [Like];
+    "hydra:member": [Like],
 }
 
 export interface Comment {
@@ -87,5 +99,26 @@ export interface idealBibli {
 }
 
 export interface IdealBibliArray {
-    "hydra:member": [];
+    "hydra:member": [],
+}
+
+export interface Conversation {
+    id: number,
+    user: [User]
+}
+
+export interface conversationArray {
+    "hydra:member": [],
+}
+
+export interface Like2 {
+    id: number,
+    total: number,
+    date: string,
+    postShare: {
+        id: number | undefined,
+    }
+    user: {
+        id: number | undefined,
+    }
 }

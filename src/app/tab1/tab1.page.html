@@ -17,7 +17,7 @@
       <app-post [post]="post" (showComments)="showComments($event, i)"></app-post>
     </div>
     <div *ngFor="let post of posts" >
-      <app-post [post]="post"></app-post>
+      <app-post [post]="post" [userId]="userId"></app-post>
     </div>
   </div>
 </ion-content>

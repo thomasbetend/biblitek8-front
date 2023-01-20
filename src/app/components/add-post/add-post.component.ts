@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 import { Storage } from '@ionic/storage-angular';
 import { LikeModel } from 'src/app/models/like.model';
-import { Post } from 'src/app/typings';
+import { Like2, Post, Post3 } from 'src/app/typings';
 
 @Component({
   selector: 'app-add-post',
@@ -16,14 +16,14 @@ import { Post } from 'src/app/typings';
 })
 export class AddPostComponent implements OnInit {
 
-  post: PostModel = new PostModel();
+  post = new PostModel();
   lastPost?: any;
   data: any;
   isPostFailed = false;
   errorFields = false;
   token?: string;
-  id?: number;
-  like: LikeModel = new LikeModel();
+  id: number | undefined;
+  like = new LikeModel();
 
   constructor(private apiService : ApiService, private router: Router, private authService: AuthService, private http: HttpClient, private storage: Storage) { }
 
@@ -31,6 +31,8 @@ export class AddPostComponent implements OnInit {
     this.errorFields = false;
     this.isPostFailed = false;
     this.getProfile();
+
+    if (!this.post) return;
     this.post.description = '';
     this.post.image = '';
   }
@@ -49,7 +51,7 @@ export class AddPostComponent implements OnInit {
   }
 
   addPost() {
-    if (!this.post.description || !this.post.image) {
+    if (!this.post) {
       this.errorFields = true;
       console.log(this.errorFields);
       return;
@@ -57,20 +59,35 @@ export class AddPostComponent implements OnInit {
     
     this.getProfile();
 
-    this.post.user = `/api/users/${this.id}`;
+    if (!this.post.user) {
+      this.post.user = {
+        id: this.id,
+      };
+    }
+
     this.post.date = this.apiService.formatDate(new Date());
-    console.log('post456', this.post);
-    this.apiService.addPost(this.post!).subscribe({
+    this.apiService.addPost(this.post).subscribe({
       next: (data)=>{
         console.log(data);
 
         this.apiService.getPostsList().subscribe((data)=>{
           this.lastPost = data['hydra:member'][0];
           console.log('lastPost id', this.lastPost.id);
-          this.like.postShare = `/api/post_shares/${this.lastPost.id}`;
+
+          if (!this.like.user) {
+            this.like.user = {
+              id: this.id,
+            };
+          }
+          if (!this.like.postShare) {
+            this.like.postShare = {
+              id: this.lastPost.id,
+            };
+          }
+
           this.like.total = 0;
           this.apiService.initializeLikeOnPost(this.like).subscribe((data)=>{
-            console.log(data);
+            console.log('like initialized', data);
           });
         });
 
@@ -86,17 +103,6 @@ export class AddPostComponent implements OnInit {
     this.post.image = '';
     this.post.description = '';
 
-    /* setTimeout(()=>{
-      this.apiService.getPostsList().subscribe((data)=>{
-        this.lastPost = data['hydra:member'][0];
-        console.log('lastPost id', this.lastPost.id);
-        this.like.postShare = `/api/post_shares/${this.lastPost.id}`;
-        this.like.total = 0;
-        this.apiService.initializeLikeOnPost(this.like).subscribe((data)=>{
-          console.log(data);
-        });
-      });
-    }, 1000) */
   }
 
 }

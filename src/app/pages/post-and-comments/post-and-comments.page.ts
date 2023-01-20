@@ -57,15 +57,29 @@ export class PostAndCommentsPage implements OnInit {
   }
 
   addComment() {
+
     if (!this.postGetted) return;
-    this.comment.postShare = `/api/post_shares/${this.postGetted.id}`;
+    if (!this.comment.postShare) {
+      this.comment.postShare = {
+        id: this.postGetted.id,
+      };
+    }
+
     if (!this.userId) return;
-    this.comment.user = `/api/users/${this.userId}`;
+    if (!this.comment.user) {
+      this.comment.user = {
+        id: this.userId,
+      };
+    }
+
     this.comment.content = this.commentContent;
     this.comment.date = this.apiService.formatDate(new Date());
-      this.apiService.addComment(this.comment).subscribe((comment)=>{
+
+    this.apiService.addComment(this.comment).subscribe((comment)=>{
     });
+
     this.commentContent ='';
+
     this.getCommentsByPostId();
   }
 

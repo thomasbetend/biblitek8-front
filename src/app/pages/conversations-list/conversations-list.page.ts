@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../typings';
+import { ApiService } from 'src/app/services/api.service';
+import { Conversation, User } from '../../typings';
+import { Storage } from '@ionic/storage-angular';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-conversations-list',
@@ -8,24 +12,50 @@ import { User } from '../../typings';
 })
 export class ConversationsListPage implements OnInit {
 
+  conversationUsers?: number[];
+  conversations?: Conversation[];
+  id?: number;
+  token?: string;
+
   usersMessages: User[] = [
     {
-      firstname : 'Linda',
-      lastname : 'Martin'
+      id: 1,
+      firstname: 'Linda',
+      lastname: 'Martin',
+      pseudo: 'Lind'
     },
     {
-      firstname : 'Michel',
-      lastname : 'Simon'
+      id: 1,
+      firstname: 'Michel',
+      lastname: 'Simon',
+      pseudo: 'Mich'
     },
     {
-      firstname : 'Suzanne',
-      lastname : 'Thab'
+      id: 1,
+      firstname: 'Suzanne',
+      lastname: 'Thab',
+      pseudo: 'Suz'
     },
   ]
 
-  constructor() { }
+  constructor(private authService: AuthService, private apiService: ApiService, private storage: Storage) { }
 
   ngOnInit() {
+
+    this.storage.get('token').then((token)=>{
+      this.token = token;
+
+      this.authService.getProfile(token).subscribe((data)=>{
+        this.id = data.id;
+    
+        this.apiService.getConversationsByIdUser(this.id).subscribe((data)=>{
+          this.conversations = data["hydra:member"];
+          console.log(this.conversations);
+          
+        }
+      );
+    });
+  });
   }
 
 }
