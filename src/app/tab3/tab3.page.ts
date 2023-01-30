@@ -5,7 +5,7 @@ import { Book } from '../typings';
 import { Storage } from '@ionic/storage-angular';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { concatMap } from 'rxjs';
+import { concatMap, mergeMap } from 'rxjs';
 
 
 @Component({
@@ -42,15 +42,17 @@ export class Tab3Page implements OnInit {
     this.apiService.getBookTotalList().subscribe((data)=>{
       this.books = data;
       console.log('this.books', data);
-    })
+    });
 
     this.storage.get('token').then((token)=>{
 
-      this.authService.getProfile(token).subscribe((data)=>{
-        this.userId = data.id;
-
-        if (!this.userId) return;
-        this.apiService.getIdealBibliByUserId(this.userId).subscribe({
+      this.authService.getProfile(token)
+        .pipe(
+          mergeMap(
+            (data: any) => this.apiService.getIdealBibliByUserId(data.id)
+          )
+        )
+        .subscribe({
           next: (data)=>{
           this.bookAdded = data;
 
@@ -64,7 +66,6 @@ export class Tab3Page implements OnInit {
             console.log('err', err);
           }
         });
-      })
     });
   }
 

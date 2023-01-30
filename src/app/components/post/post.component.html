@@ -13,7 +13,7 @@
           <p class="text-description">{{ post?.description }}</p>
           <div class="reactions">
             <div class="likes">
-              <p (click)="addLike()"><i class="fa-solid fa-heart" [ngClass]="{ 'violetHeart' : likeUser === 1}"></i></p>
+              <p (click)="addLike()"><i class="fa-solid fa-heart" [ngClass]="{ 'violetHeart' : likeTotal === 1}"></i></p>
               <p class="text-small">{{ like }}</p>
             </div>
             <div class="comment" (click)="onClickShowComments()">

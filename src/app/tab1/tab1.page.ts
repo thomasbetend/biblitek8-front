@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Post } from '../typings';
 import { Storage } from '@ionic/storage-angular';
@@ -41,12 +41,14 @@ export class Tab1Page {
     },
   ]
 
-  constructor(private authService: AuthService, private storage: Storage, private apiService: ApiService, private router: Router) {
-    this.refreshList();
+  constructor(private activatedRoute: ActivatedRoute, private authService: AuthService, private storage: Storage, private apiService: ApiService, private router: Router) {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.ngOnInit();
+    });
   }
 
   ngOnInit() {
-    console.log('refresh page tab1');
+    //console.log('refresh page tab1');
     this.refreshList();
 
     this.storage.get('token').then((token)=>{
@@ -60,13 +62,12 @@ export class Tab1Page {
 
   refreshList() {
     this.apiService.getPostsList().subscribe(data => {
-      console.log(data);
       this.data = data['hydra:member'];
   });
   }
 
   showComments(id: number, index: number) {
-    console.log(`Showing : ${id}`);
+    //console.log(`Showing : ${id}`);
     this.router.navigate(["/post-and-comments", this.data[index].id]);
   }
 

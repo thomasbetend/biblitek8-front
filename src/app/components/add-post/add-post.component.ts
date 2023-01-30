@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Storage } from '@ionic/storage-angular';
 import { LikeModel } from 'src/app/models/like.model';
 import { Like2, Post, Post3 } from 'src/app/typings';
+import { forkJoin, map, mergeMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-add-post',
@@ -65,15 +66,17 @@ export class AddPostComponent implements OnInit {
       };
     }
 
+
+
     this.post.date = this.apiService.formatDate(new Date());
-    this.apiService.addPost(this.post).subscribe({
-      next: (data)=>{
-        console.log(data);
 
-        this.apiService.getPostsList().subscribe((data)=>{
+    this.apiService.addPost(this.post)
+      .pipe(
+        mergeMap(() => this.apiService.getPostsList())
+      )
+      .pipe(
+        map((data:any) => {
           this.lastPost = data['hydra:member'][0];
-          console.log('lastPost id', this.lastPost.id);
-
           if (!this.like.user) {
             this.like.user = {
               id: this.id,
@@ -84,21 +87,26 @@ export class AddPostComponent implements OnInit {
               id: this.lastPost.id,
             };
           }
-
           this.like.total = 0;
-          this.apiService.initializeLikeOnPost(this.like).subscribe((data)=>{
-            console.log('like initialized', data);
-          });
-        });
-
-        this.router.navigate(['/']);
-        this.isPostFailed = false;
-      }, 
-      error:(err)=>{
-        console.log(err);
-        this.isPostFailed = true;
-      } 
-    });
+          return this.like;
+        })
+      )
+      .pipe(
+        mergeMap(
+          (data: any) => this.apiService.initializeLikeOnPost(data)
+        )
+      )
+      .pipe(
+        map(
+          (data: any) => {
+            this.router.navigate(['/']);
+            this.isPostFailed = false;
+          }
+        )
+      )
+      .subscribe(
+        data => console.log('like initialized', data)
+      );
 
     this.post.image = '';
     this.post.description = '';

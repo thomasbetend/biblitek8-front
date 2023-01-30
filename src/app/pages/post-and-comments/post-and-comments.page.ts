@@ -30,6 +30,7 @@ export class PostAndCommentsPage implements OnInit {
   }
 
   ngOnInit() { 
+    this.getPostsByPostId();
     this.getCommentsByPostId();
 
     this.storage.get('token').then((token)=>{
@@ -42,17 +43,19 @@ export class PostAndCommentsPage implements OnInit {
     });
   }
 
-  getCommentsByPostId() {
+  getPostsByPostId() {
     if (!this.postId) return;
     this.apiService.getPostsByPostId2(this.postId).subscribe((post)=>{
       this.postGetted = post;
-      console.log(this.postGetted);
+      console.log('postGetted', this.postGetted);
+    });
+  }
 
-      if (!this.postId) return;
+  getCommentsByPostId() {
+    if (!this.postId) return;
       this.apiService.getCommentsByPostId(this.postId).subscribe((data)=>{
         this.data = data["hydra:member"];
-        console.log('comments', this.data);
-      });
+        console.log('comments getted....', this.data);
     });
   }
 

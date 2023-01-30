@@ -100,8 +100,8 @@ export class ApiService {
         return this.http.post(`${this.baseURL}/like_posts`, like, {'headers': headers});
     }
 
-    upDateLikeOnPostByPostId(id: number, like: LikeModel) {
-        return this.http.put(`${this.baseURL}/like_posts/${id}`, like);
+    upDateLikeOnPostByPostId(likeId: number, like: LikeModel) {
+        return this.http.put(`${this.baseURL}/like_posts/${likeId}`, like);
     }
 
     addUser(user: UserModel2) {

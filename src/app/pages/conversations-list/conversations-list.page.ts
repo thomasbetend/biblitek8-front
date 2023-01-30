@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Conversation, User } from '../../typings';
 import { Storage } from '@ionic/storage-angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { mergeMap } from 'rxjs';
 
 
 @Component({
@@ -45,17 +46,18 @@ export class ConversationsListPage implements OnInit {
     this.storage.get('token').then((token)=>{
       this.token = token;
 
-      this.authService.getProfile(token).subscribe((data)=>{
-        this.id = data.id;
-    
-        this.apiService.getConversationsByIdUser(this.id).subscribe((data)=>{
+      this.authService.getProfile(token)
+        .pipe(
+          mergeMap(
+            (data:any) => this.apiService.getConversationsByIdUser(data.id)
+          )
+        )
+        .subscribe((data)=>{
           this.conversations = data["hydra:member"];
           console.log(this.conversations);
           
         }
       );
     });
-  });
   }
-
 }

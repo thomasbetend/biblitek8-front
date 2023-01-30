@@ -5,6 +5,7 @@ import { Post } from 'src/app/typings';
 import { Storage } from '@ionic/storage-angular';
 import { ApiService } from 'src/app/services/api.service';
 import { LikeModel } from 'src/app/models/like.model';
+import { mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -13,13 +14,14 @@ import { LikeModel } from 'src/app/models/like.model';
 })
 export class PostComponent implements OnInit {
   @Input() data?: any;
-  @Input() post?: Post;
+  @Input() post?: any;
   @Input() id?: string ;
   @Input() userId?: number;
   imageUrl = "../../assets/images/";
   like?: number;
   likeId?: number;
-  likeUser = 0;
+  likeTotal?: number;
+  likeUser?: number;
   likeUpdate: LikeModel = new LikeModel() ;
   token?: string;
   avatar?: string;
@@ -49,33 +51,30 @@ export class PostComponent implements OnInit {
     this.storage.get('token').then((token)=>{
       this.token = token;
 
-      this.authService.getProfile(token).subscribe((data)=>{
-        this.userId = data.id;
-        console.log(this.userId);
-
-        if (!this.post) return;
-        console.log('post',this.post.id);
-        this.apiService.getLikeIdByUserAndPost(this.post?.id, this.userId).subscribe((data)=>{
-          console.log('likeId', data);
-          if (!data["hydra:member"]) this.likeId === undefined;
-          this.likeId = data["hydra:member"][0].id;
+      this.authService.getProfile(token)
+        .pipe(
+          mergeMap(
+            (data: any) => this.apiService.getLikeIdByUserAndPost(this.post?.id, data.id)
+          )
+        )
+        .subscribe((data)=>{
+          //console.log('likeId', data);
+          if (data["hydra:member"] === undefined) {
+            this.likeId === undefined;
+          } else {
+            this.likeId = data["hydra:member"][0].id;
+            this.likeTotal = data["hydra:member"][0].total;
+          }
         });
       });
-    });
   } 
 
   addLike() {
-    if (this.likeUser === 0) {
-      this.likeUser++;
-      if(!this.like) {
-        this.like = 1;
-      } else {
-        this.like += this.likeUser;
-      }
-    } else {
-      this.likeUser--;
-      if(!this.like) return;
-      this.like--;
+
+    if (this.likeId === undefined || this.likeTotal === 0) {
+      this.likeUser = 1;
+    } else if (this.likeTotal === 1){
+      this.likeUser = 0;
     }
 
     if (!this.likeUpdate.user) {
@@ -91,11 +90,29 @@ export class PostComponent implements OnInit {
       };
     }
 
-    this.likeUpdate.total = this.like;
+    this.likeUpdate.total = this.likeUser;
 
-    this.apiService.upDateLikeOnPostByPostId(this.post?.id, this.likeUpdate).subscribe((data)=>{
-      console.log(data);
-    });
+    if (this.likeId === undefined) {
+      console.log(`total : ${this.likeTotal}, likeUser : ${this.likeUser}`);
+      this.apiService.initializeLikeOnPost(this.likeUpdate).subscribe((data)=>{
+        console.log('likeUpdate 1', data);
+
+        this.getLikeByPostId();
+        this.getLikeIdByUserAndPost();
+      });
+    } else {
+      console.log('defined');
+      console.log(`total : ${this.likeTotal}, likeUser : ${this.likeUser}`);
+      this.apiService.upDateLikeOnPostByPostId(this.likeId, this.likeUpdate).subscribe((data)=>{
+        console.log('likeUpdate 2', data);
+
+        this.getLikeByPostId();
+        this.getLikeIdByUserAndPost();
+      });
+    }
+
+    //this.getLikeByPostId();
+    //this.getLikeIdByUserAndPost();
   }
 
   getToken() {
@@ -106,7 +123,7 @@ export class PostComponent implements OnInit {
 
   onClickShowComments() {
     if (!this.post) return;
-    console.log(this.post);
+    //console.log(this.post);
     this.showComments.emit(this.post.id);
   }
 

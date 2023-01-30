@@ -41,43 +41,20 @@ export class ProfilePage implements OnInit {
     this.storage.get('token').then((token)=>{
       this.token = token;
 
-      /* const obs1$ = this.authService.getProfile(token);
+      this.authService.getProfile(token).subscribe(
+        (data : any) => {
+          this.pseudo = data.pseudo;
+          this.avatar = data.avatar;
+        }
+      )
 
-      const result$ = obs1$.pipe(
-        switchMap(() => {
-          console.log(); 
-          if (!this.id) return;
-          this.apiService.getPostsByUserId(this.id).subscribe((data)=>{
-          console.log('dataPosts', data["hydra:member"]);
-          this.postArray = data["hydra:member"];
-          return this.postArray;
-        })
-        })
-      );
-      
-      result$.subscribe((data)=>{
-        this.pseudo = data.pseudo;
-        this.avatar = data.avatar;
-        this.id = data.id;
-        console.log('>>>>>id2',this.id);
-      }
-      ) */
-
-
-      this.authService.getProfile(token).subscribe((data)=>{
-        this.pseudo = data.pseudo;
-        this.avatar = data.avatar;
-        this.id = data.id;
-        console.log('>>>>>id2',this.id);
-
-        if (!this.id) return;
-        this.apiService.getPostsByUserId(this.id).subscribe((data)=>{
-          console.log('dataPosts', data["hydra:member"]);
+      this.authService.getProfile(token)
+        .pipe(
+            (data: any) => this.apiService.getPostsByUserId(data.id)
+        )
+        .subscribe((data)=>{
           this.postArray = data["hydra:member"];
         })
       });
-    });
   };
-
-
 }
