@@ -127,4 +127,12 @@ export class ApiService {
     getConversationsByIdUser(userId: number) {
         return this.http.get<conversationArray>(`${this.baseURL}/conversations?page=1&user=${userId}`);
     }
+
+    getConversationById(conversationId: number) {
+        return this.http.get(`${this.baseURL}/conversations/${conversationId}`);
+    }
+
+    getMessagesByConversationId(conversationId: number) {
+        return this.http.get(`${this.baseURL}/messages?page=1&conversation=${conversationId}`);
+    }
 }

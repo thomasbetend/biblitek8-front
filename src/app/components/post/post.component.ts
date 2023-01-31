@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage-angular';
 import { ApiService } from 'src/app/services/api.service';
 import { LikeModel } from 'src/app/models/like.model';
 import { mergeMap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-post',
@@ -17,7 +18,7 @@ export class PostComponent implements OnInit {
   @Input() post?: any;
   @Input() id?: string ;
   @Input() userId?: number;
-  imageUrl = "../../assets/images/";
+  imageUrl = environment.imageUrl;
   like?: number;
   likeId?: number;
   likeTotal?: number;

@@ -35,8 +35,10 @@
       </div>
       <div class="content">{{ comment.content }}</div>
     </div>
-    <form (ngSubmit)="addComment()">
-      <ion-input [(ngModel)]="commentContent" name="comment" placeholder="Ajouter un commentaire" class="custom"></ion-input>
-    </form>
   </div>
 </ion-content>
+<div class="black">
+</div>
+<form (ngSubmit)="addComment()">
+  <ion-input [(ngModel)]="commentContent" name="comment" placeholder="Ajouter un commentaire" class="custom"></ion-input>
+</form>

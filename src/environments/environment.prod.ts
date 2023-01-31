@@ -1,4 +1,6 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://maprod.api.com/api',
+  production: false,
+  apiUrl: 'https://localhost:8000/api',
+  authUrl: 'https://localhost:8000/auth',
+  imageUrl: '../../assets/images/',
 };

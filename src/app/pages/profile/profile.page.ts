@@ -46,7 +46,7 @@ export class ProfilePage implements OnInit {
           this.pseudo = data.pseudo;
           this.avatar = data.avatar;
         }
-      )
+      );
 
       this.authService.getProfile(token)
         .pipe(

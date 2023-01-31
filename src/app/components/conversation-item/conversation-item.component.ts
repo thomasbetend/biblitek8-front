@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Conversation, User } from 'src/app/typings';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-conversation-item',
@@ -11,11 +12,14 @@ export class ConversationItemComponent implements OnInit {
   @Input() firstname?: string;
   @Input() lastname?: string;
   @Input() user?: User;
-  @Input() conversation?: string;
-
+  @Input() pseudo?: string;
+  @Input() avatar?: string;
+  imageUrl = environment.imageUrl;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.avatar);
+  }
 
 }

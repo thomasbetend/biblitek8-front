@@ -16,9 +16,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1>Messages</h1>
-  <ion-searchbar search-icon="search-circle" placeholder="Nouvelle conversation"></ion-searchbar>
-  <div *ngFor="let user of user2; let i = index">
-    <app-conversation-item [conversation]="user"></app-conversation-item>
-  </div>
+  <div class="conversations-page">
+    <h1>Messages</h1>
+    <ion-searchbar search-icon="search-circle" placeholder="Nouvelle conversation"></ion-searchbar>
+    <div *ngFor="let user of user2; let i = index" class="conversation-item">
+      <app-conversation-item [pseudo]="user[0].pseudo" [avatar]="user[0].avatar" [routerLink]="['/conversation', user[1]]"></app-conversation-item>
+    </div>
+</div>
 </ion-content>

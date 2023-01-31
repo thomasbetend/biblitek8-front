@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: 'modify-bibliotheque',
     loadChildren: () => import('./pages/modify-bibliotheque/modify-bibliotheque.module').then( m => m.ModifyBibliothequePageModule)
+  },
+  {
+    path: 'conversation/:id',
+    loadChildren: () => import('./pages/conversation/conversation.module').then( m => m.ConversationPageModule)
   }
 ];
 @NgModule({

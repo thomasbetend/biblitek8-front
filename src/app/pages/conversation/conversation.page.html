@@ -16,11 +16,16 @@
 </ion-header>
 
 <ion-content>
-  <div class="padding">
-    <div class="pseudo">Vos posts, {{ pseudo }}</div>
-    <ion-button class="disconnection" fill="outline" (click)="onLogout()">Déconnexion</ion-button>
-    <div class="personal-post" *ngFor="let post of postArray" >
-      <app-personal-post [post]="post" [routerLink]="['/post', post.id]"></app-personal-post>
-    </div>
+  <div class="profile">
+    <div class="avatar1" [ngStyle]="{'background-image' : 'url(' + imageUrl + userToAvatar}"></div> <!-- put avatar instead -->
+    <p class="text-bold">{{ userToPseudo }}</p>
   </div>
+  <div class="message" *ngFor="let message of messages" [ngClass]="{'you-message': message.user.id === id }">
+    {{ message.content }}
+  </div>
+
+
 </ion-content>
+<form (ngSubmit)="sendMessage()">
+  <ion-input [(ngModel)]="messageContent" name="message" placeholder="Envoyer un message" class="send-message"></ion-input>
+</form>

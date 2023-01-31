@@ -59,19 +59,18 @@ export class ConversationsListPage implements OnInit {
         )
         .subscribe((data)=>{
           this.conversations = data["hydra:member"];
-          
+
           this.conversations.forEach(element => {
-            this.user1.push(element.user);
+            this.user1.push([element.user, element.id]);
           });
 
           this.user1.forEach(element => {
-            element.forEach((value: any) => {
+            element[0].forEach((value: any) => {
               if (value.id !== this.id) {
-                this.user2.push(value.pseudo)
+                this.user2.push([value, element[1]])
               }
             });
           });
-          console.log(this.user2);
         }
       );
     });

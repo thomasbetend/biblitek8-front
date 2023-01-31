@@ -45,6 +45,14 @@ export interface User {
     pseudo: string
 }
 
+export interface User2 {
+    id: number,
+    firstname: string,
+    lastname: string,
+    pseudo: string,
+    avatar: string
+}
+
 export interface Token {
     token: string,
 }

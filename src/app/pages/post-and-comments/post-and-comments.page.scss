@@ -13,6 +13,10 @@ ion-input.custom {
     margin-right: 2.5%;
 }
 
+ion-content {
+    height: 80vh;
+}
+
 .padding {
     margin: 2.5%;
 }
@@ -56,6 +60,12 @@ ion-input.custom {
     margin-left: 20px;
 }
 
+.custom {
+    position: absolute;
+    bottom: 10px;
+    width: 95%;
+}
+
 .content {
     margin-left: 40px;
     font-size: 0.8rem;
@@ -63,4 +73,10 @@ ion-input.custom {
 
 .text-bold {
     font-size: 0.8rem;
+}
+
+.black {
+    position: absolute;
+    height: 50px;
+    bottom: 0px;
 }
