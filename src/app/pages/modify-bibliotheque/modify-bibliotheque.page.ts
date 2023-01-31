@@ -33,9 +33,8 @@ export class ModifyBibliothequePage implements OnInit {
             (data: any) => this.apiService.getIdealBibliByUserId(data.id)
           )
         )
-        .subscribe((data)=>{
+        .subscribe((data: any)=>{
           this.data = data["hydra:member"];
-          console.log(this.data[0]);
           this.idealBibli = this.data[0];
         });
     })
@@ -47,8 +46,7 @@ export class ModifyBibliothequePage implements OnInit {
         console.log(data);
       }
     );
-    this.router.navigate(['/tab3']); 
+    this.router.navigate(['/tabs/tab3']); 
   }
 
-  
 }

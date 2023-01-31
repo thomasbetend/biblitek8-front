@@ -11,7 +11,7 @@ export class ConversationItemComponent implements OnInit {
   @Input() firstname?: string;
   @Input() lastname?: string;
   @Input() user?: User;
-  @Input() conversation?: User;
+  @Input() conversation?: string;
 
 
   constructor() { }

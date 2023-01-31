@@ -6,6 +6,7 @@ import { Post, Post2 } from 'src/app/typings';
 import { Storage } from '@ionic/storage-angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
+import { mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-post-and-comments',
@@ -53,6 +54,7 @@ export class PostAndCommentsPage implements OnInit {
 
   getCommentsByPostId() {
     if (!this.postId) return;
+    console.log(this.postId);
       this.apiService.getCommentsByPostId(this.postId).subscribe((data)=>{
         this.data = data["hydra:member"];
         console.log('comments getted....', this.data);
@@ -78,12 +80,18 @@ export class PostAndCommentsPage implements OnInit {
     this.comment.content = this.commentContent;
     this.comment.date = this.apiService.formatDate(new Date());
 
-    this.apiService.addComment(this.comment).subscribe((comment)=>{
+    this.apiService.addComment(this.comment)
+      .pipe(
+        mergeMap(
+          (data: any) => this.apiService.getCommentsByPostId(data.postShare.id)
+        )
+      )
+      .subscribe((data)=>{
+        this.data = data["hydra:member"];
     });
 
     this.commentContent ='';
 
-    this.getCommentsByPostId();
   }
 
 }

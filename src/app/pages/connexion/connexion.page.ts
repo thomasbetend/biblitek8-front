@@ -34,17 +34,17 @@ export class ConnexionPage implements OnInit {
     }
 
     this.authService.login(this.user!)
-    .subscribe({
-      next: (data)=>{
-        console.log(data);
-        this.storageService.set('token', data.token);
-        this.router.navigate(['/']);
-      }, 
-      error:(err)=>{
-        console.log(err);
-        this.errorConnexion = true;
-    } 
-    })
+      .subscribe({
+        next: (data)=>{
+          console.log(data);
+          this.storageService.set('token', data.token);
+          this.router.navigate(['/']);
+        }, 
+        error:(err)=>{
+          console.log(err);
+          this.errorConnexion = true;
+        } 
+      })
   }
 
 }

@@ -56,7 +56,7 @@ export class ApiService {
     }
 
     getCommentsByPostId(id: number) {
-        return this.http.get<CommentArray>(`${this.baseURL}/comments?page=1&post_share=${id}`);
+        return this.http.get<CommentArray>(`${this.baseURL}/comments?page=1&postShare=${id}`);
     }
 
     addComment(comment: CommentModel) {

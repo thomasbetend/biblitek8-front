@@ -54,7 +54,10 @@ export class PostComponent implements OnInit {
       this.authService.getProfile(token)
         .pipe(
           mergeMap(
-            (data: any) => this.apiService.getLikeIdByUserAndPost(this.post?.id, data.id)
+            (data: any) => {
+              this.userId = data.id;
+              return this.apiService.getLikeIdByUserAndPost(this.post?.id, data.id);
+            }
           )
         )
         .subscribe((data)=>{
@@ -77,6 +80,7 @@ export class PostComponent implements OnInit {
       this.likeUser = 0;
     }
 
+    console.log('iddddddd', this.userId);
     if (!this.likeUpdate.user) {
       this.likeUpdate.user = {
         id: this.userId,

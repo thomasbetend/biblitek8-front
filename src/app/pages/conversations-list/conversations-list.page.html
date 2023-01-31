@@ -18,7 +18,7 @@
 <ion-content [fullscreen]="true">
   <h1>Messages</h1>
   <ion-searchbar search-icon="search-circle" placeholder="Nouvelle conversation"></ion-searchbar>
-  <div *ngFor="let conversation of conversations; let i = index">
-    <app-conversation-item [conversation]="conversation.user[0]"></app-conversation-item>
+  <div *ngFor="let user of user2; let i = index">
+    <app-conversation-item [conversation]="user"></app-conversation-item>
   </div>
 </ion-content>

@@ -3,7 +3,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Conversation, User } from '../../typings';
 import { Storage } from '@ionic/storage-angular';
 import { AuthService } from 'src/app/services/auth.service';
-import { mergeMap } from 'rxjs';
+import { mergeMap, of } from 'rxjs';
 
 
 @Component({
@@ -17,6 +17,8 @@ export class ConversationsListPage implements OnInit {
   conversations?: Conversation[];
   id?: number;
   token?: string;
+  user1: any[] = [];
+  user2: any[] = [];
 
   usersMessages: User[] = [
     {
@@ -49,13 +51,27 @@ export class ConversationsListPage implements OnInit {
       this.authService.getProfile(token)
         .pipe(
           mergeMap(
-            (data:any) => this.apiService.getConversationsByIdUser(data.id)
+            (data: any) => {
+              this.id = data.id;
+              return this.apiService.getConversationsByIdUser(data.id);
+            }
           )
         )
         .subscribe((data)=>{
           this.conversations = data["hydra:member"];
-          console.log(this.conversations);
           
+          this.conversations.forEach(element => {
+            this.user1.push(element.user);
+          });
+
+          this.user1.forEach(element => {
+            element.forEach((value: any) => {
+              if (value.id !== this.id) {
+                this.user2.push(value.pseudo)
+              }
+            });
+          });
+          console.log(this.user2);
         }
       );
     });

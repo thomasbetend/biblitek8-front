@@ -4,7 +4,7 @@ import { ApiService } from '../services/api.service';
 import { Book } from '../typings';
 import { Storage } from '@ionic/storage-angular';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { concatMap, mergeMap } from 'rxjs';
 
 
@@ -32,7 +32,11 @@ export class Tab3Page implements OnInit {
   book1? : string;
   books?: Book[]; 
 
-  constructor(private router: Router, private apiService: ApiService, private storage: Storage, private authService: AuthService ) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private apiService: ApiService, private storage: Storage, private authService: AuthService ) {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.ngOnInit();
+    });
+  }
 
   ngOnInit() {
 
